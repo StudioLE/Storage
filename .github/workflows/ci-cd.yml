@@ -47,7 +47,7 @@ jobs:
       - build-and-test-ubuntu
     uses: ./.github/workflows/03-publish-nuget.yml
     with:
-      os: windows-latest
+      os: ubuntu-latest
       configuration: ${{ needs.analysis.outputs.configuration }}
       version: ${{ needs.analysis.outputs.version }}
     secrets: inherit
