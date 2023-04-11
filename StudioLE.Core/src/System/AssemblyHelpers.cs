@@ -16,11 +16,31 @@ public static class AssemblyHelpers
     /// </summary>
     public static bool IsDebugBuild()
     {
-        return Assembly
-                   .GetCallingAssembly()
+        return Assembly.GetCallingAssembly().IsDebugBuild();
+    }
+
+    /// <summary>
+    /// Determine if <paramref name="assembly"/> is a DEBUG build.
+    /// </summary>
+    public static bool IsDebugBuild(this Assembly assembly)
+    {
+        return assembly
                    .GetCustomAttribute<DebuggableAttribute>()
                    ?.IsJITTrackingEnabled
                ?? false;
+    }
+
+    /// <summary>
+    /// Get the assembly of the calling methods.
+    /// </summary>
+    public static IEnumerable<Assembly> GetCallingAssemblies()
+    {
+        StackFrame[] stackFrames = new StackTrace().GetFrames()
+                                   ?? throw new("Failed to get stack trace frames.");
+        return stackFrames
+            .Select(frame => frame.GetMethod()?.DeclaringType?.Assembly
+                             ?? throw new("Failed to get calling assembly of frame."))
+            .Skip(1);
     }
 
     /// <summary>
