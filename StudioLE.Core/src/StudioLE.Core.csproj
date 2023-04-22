@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Generic extension and helper methods for the C# language.</Description>
   </PropertyGroup>
 
-  <!-- Use consistent properties across all src projects -->
-  <Import Project="../../GlobalProperties.src.props"/>
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../GlobalProperties.props"/>
 
   <ItemGroup>
     <Using Remove="System.IO"/>
