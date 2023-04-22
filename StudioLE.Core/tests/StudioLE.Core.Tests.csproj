@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Use consistent properties across all projects -->
-  <Import Project="..\..\GlobalProperties.props" />
+  <Import Project="..\..\Global.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\src\StudioLE.Core.csproj" />
