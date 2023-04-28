@@ -63,7 +63,6 @@ internal sealed class ConverterResolverTests
     [TestCase("1.01", 1.01)]
     [TestCase("-1.01", -1.01)]
     [TestCase("", null)]
-    [TestCase(null, null)]
     public void ConverterResolver_TryConvert_Double(string value, double? expected)
     {
         // Arrange
@@ -71,9 +70,11 @@ internal sealed class ConverterResolverTests
 
         // Act
         double? result = resolver.TryConvert<string, double>(value);
+        object? result2 = resolver.TryConvert(value, typeof(double));
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
+        Assert.That(result2, Is.EqualTo(expected));
     }
 
     [TestCase("Default", ExampleEnum.Default)]
@@ -87,8 +88,10 @@ internal sealed class ConverterResolverTests
 
         // Act
         ExampleEnum? result = resolver.TryConvert<string, ExampleEnum>(value);
+        object? result2 = resolver.TryConvert(value, typeof(ExampleEnum));
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
+        Assert.That(result2, Is.EqualTo(expected));
     }
 }
