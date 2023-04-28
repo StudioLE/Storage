@@ -74,10 +74,7 @@ public class ConverterResolver
             : null;
     }
 
-    /// <summary>
-    /// Resolve a converter by <see cref="Type"/>.
-    /// </summary>
-    public object? Activate(Type resultType, Type converterType)
+    private static object? Activate(Type resultType, Type converterType)
     {
         ConstructorInfo[] constructors = converterType.GetConstructors();
         ConstructorInfo? parameterlessConstructor = constructors
@@ -95,7 +92,7 @@ public class ConverterResolver
     public static ConverterResolver Default()
     {
         return new ConverterResolverBuilder()
-            #if NETSTANDARD2_1
+            #if ! NETSTANDARD2_0
             .Register<Enum, StringToEnum>()
             #endif
             .Register<int, StringToInteger>()
