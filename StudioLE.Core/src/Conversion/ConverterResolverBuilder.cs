@@ -7,27 +7,21 @@ namespace StudioLE.Core.Conversion;
 /// </summary>
 public class ConverterResolverBuilder : IBuilder<ConverterResolver>
 {
-    private readonly Dictionary<Type, Type> _registry = new();
-
-    /// <summary>
-    /// Register a converter as resolvable by <see cref="Type"/>.
-    /// </summary>
-    /// <param name="sourceType">The <see cref="Type"/> to resolve by.</param>
-    /// <param name="converter">The resolvable <see cref="Type"/>.</param>
-    /// <returns>The builder.</returns>
-    public ConverterResolverBuilder Register(Type sourceType, Type converter)
-    {
-        _registry.Add(sourceType, converter);
-        return this;
-    }
+    private readonly Dictionary<Type, Dictionary<Type, Type>> _registry = new();
 
     /// <summary>
     /// Register a converter as resolvable by <see cref="Type"/>.
     /// </summary>
     /// <returns>The builder.</returns>
-    public ConverterResolverBuilder Register<TSource, TConverter>()
+    public ConverterResolverBuilder Register<TSource, TResult, TConverter>() where TConverter : IConverter<TSource, TResult>
     {
-        Register(typeof(TSource), typeof(TConverter));
+
+        Type sourceType = Nullable.GetUnderlyingType(typeof(TSource)) ?? typeof(TSource);
+        Type resultType = Nullable.GetUnderlyingType(typeof(TResult)) ?? typeof(TResult);
+        Type converterType = typeof(TConverter);
+        if (!_registry.ContainsKey(sourceType))
+            _registry.Add(sourceType, new());
+        _registry[sourceType].Add(resultType, converterType);
         return this;
     }
 

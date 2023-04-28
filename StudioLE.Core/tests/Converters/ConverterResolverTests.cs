@@ -10,13 +10,13 @@ internal sealed class ConverterResolverTests
     [TestCase(typeof(double), typeof(StringToDouble))]
     [TestCase(typeof(int), typeof(StringToInteger))]
     [TestCase(typeof(string), typeof(StringToString))]
-    public void ConverterResolver_Resolve(Type sourceType, Type expectedConverterType)
+    public void ConverterResolver_ResolveType(Type resultType, Type expectedConverterType)
     {
         // Arrange
         ConverterResolver resolver = ConverterResolver.Default();
 
         // Act
-        Type? converter = resolver.Resolve(sourceType);
+        Type? converter = resolver.ResolveType(typeof(string), resultType);
 
         // Assert
         Assert.That(converter, Is.Not.Null);
@@ -27,13 +27,13 @@ internal sealed class ConverterResolverTests
     [TestCase(typeof(double), typeof(StringToDouble))]
     [TestCase(typeof(int), typeof(StringToInteger))]
     [TestCase(typeof(string), typeof(StringToString))]
-    public void ConverterResolver_ResolveActivated(Type sourceType, Type expectedConverterType)
+    public void ConverterResolver_ResolveActivated(Type resultType, Type expectedConverterType)
     {
         // Arrange
         ConverterResolver resolver = ConverterResolver.Default();
 
         // Act
-        object? converter = resolver.ResolveActivated(sourceType);
+        object? converter = resolver.ResolveActivated(typeof(string), resultType);
 
         // Assert
         Assert.That(converter, Is.Not.Null);
@@ -47,7 +47,7 @@ internal sealed class ConverterResolverTests
     {
         // Arrange
         ConverterResolver resolver = ConverterResolver.Default();
-        object? converter = resolver.ResolveActivated(typeof(ExampleEnum));
+        object? converter = resolver.ResolveActivated(typeof(string), typeof(ExampleEnum));
         if (converter is not StringToEnum stringToEnum)
             throw new("Resolved incorrect type");
 

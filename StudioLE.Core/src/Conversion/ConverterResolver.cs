@@ -11,7 +11,7 @@ namespace StudioLE.Core.Conversion;
 /// </remarks>
 public class ConverterResolver
 {
-    private readonly IDictionary<Type, Type> _registry;
+    private readonly Dictionary<Type, Dictionary<Type, Type>> _registry;
 
     /// <summary>
     /// Construct an <see cref="ConverterResolver"/> from an existing dictionary.
@@ -20,58 +20,46 @@ public class ConverterResolver
     /// This constructor is used by <see cref="ConverterResolverBuilder"/>.
     /// </remarks>
     /// <param name="registry">The assemblies.</param>
-    internal ConverterResolver(IDictionary<Type, Type> registry)
+    internal ConverterResolver(Dictionary<Type, Dictionary<Type, Type>> registry)
     {
         _registry = registry;
     }
 
     /// <summary>
-    /// Resolve a converter by <see cref="Type"/>.
+    /// Resolve a converter <see cref="Type"/> that converts <paramref name="sourceType"/> to <paramref name="resultType"/>.
     /// </summary>
-    /// <param name="resultType">The converter for <see cref="Type"/>.</param>
-    public bool CanResolve(Type resultType)
+    public Type? ResolveTypeExact(Type sourceType, Type resultType)
     {
-        return _registry.ContainsKey(resultType);
+        if (!_registry.ContainsKey(sourceType))
+            return null;
+        if (!_registry[sourceType].ContainsKey(resultType))
+            return null;
+        return _registry[sourceType][resultType];
     }
 
     /// <summary>
-    /// Resolve a converter by <see cref="Type"/>.
+    /// Resolve a converter <see cref="Type"/> that converts <paramref name="sourceType"/> to <paramref name="resultType"/>.
     /// </summary>
-    /// <param name="resultType">The converter for <see cref="Type"/>.</param>
-    public Type? ResolveExact(Type resultType)
+    public Type? ResolveType(Type sourceType, Type resultType)
     {
-        return _registry.TryGetValue(resultType, out Type? type)
-            ? type
-            : null;
+        IReadOnlyCollection<Type> sourceTypes = GetTypeHierarchy(sourceType);
+        IReadOnlyCollection<Type> resultTypes = GetTypeHierarchy(resultType);
+        return sourceTypes.Select(source => resultTypes
+                .Select(result => ResolveTypeExact(source, result))
+                .OfType<Type>()
+                .FirstOrDefault())
+            .FirstOrDefault();
     }
 
     /// <summary>
-    /// Resolve a converter by <see cref="Type"/>.
+    /// Resolve a converter <see cref="Type"/> that converts <paramref name="sourceType"/> to <paramref name="resultType"/>.
     /// </summary>
-    /// <param name="resultType">The converter for <see cref="Type"/>.</param>
-    public Type? Resolve(Type resultType)
+    public object? ResolveActivated(Type sourceType, Type resultType)
     {
-        Type originalResultType = resultType;
-        while (true)
-        {
-            if (_registry.TryGetValue(resultType, out Type? type))
-                return type;
-            if (resultType.BaseType is null)
-                return null;
-            resultType = resultType.BaseType;
-        }
-    }
-
-    /// <summary>
-    /// Resolve a converter by <see cref="Type"/>.
-    /// </summary>
-    /// <param name="resultType">The converter for <see cref="Type"/>.</param>
-    public object? ResolveActivated(Type resultType)
-    {
-        Type? resolved = Resolve(resultType);
-        return resolved is not null
-            ? Activate(resultType, resolved)
-            : null;
+        Type? resolved = ResolveType(sourceType, resultType);
+        return resolved is null
+            ? null
+            : Activate(resultType, resolved);
     }
 
     private static object? Activate(Type resultType, Type converterType)
@@ -89,15 +77,29 @@ public class ConverterResolver
         return null;
     }
 
+
+    private static IReadOnlyCollection<Type> GetTypeHierarchy(Type type)
+    {
+        List<Type> hierarchy = new();
+        while (true)
+        {
+            hierarchy.Add(type);
+            if (type.BaseType is null)
+                break;
+            type = type.BaseType;
+        }
+        return hierarchy;
+    }
+
     public static ConverterResolver Default()
     {
         return new ConverterResolverBuilder()
             #if ! NETSTANDARD2_0
-            .Register<Enum, StringToEnum>()
+            .Register<string, Enum?, StringToEnum>()
             #endif
-            .Register<int, StringToInteger>()
-            .Register<double, StringToDouble>()
-            .Register<string, StringToString>()
+            .Register<string, int?, StringToInteger>()
+            .Register<string, double?, StringToDouble>()
+            .Register<string, string?, StringToString>()
             .Build();
     }
 }
