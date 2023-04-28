@@ -62,6 +62,20 @@ public class ConverterResolver
             : Activate(resultType, resolved);
     }
 
+    public TResult? TryConvert<TSource, TResult>(TSource source) where TResult : struct
+    {
+        object? converter = ResolveActivated(typeof(TSource), typeof(TResult));
+        if (converter is null)
+            return null;
+        MethodInfo? method = converter.GetType().GetMethod("Convert");
+        if (method is null)
+            return null;
+        object? result = method.Invoke(converter, new object[]{ source! });
+        return result is TResult tResult
+            ? tResult
+            : null;
+    }
+
     private static object? Activate(Type resultType, Type converterType)
     {
         ConstructorInfo[] constructors = converterType.GetConstructors();
