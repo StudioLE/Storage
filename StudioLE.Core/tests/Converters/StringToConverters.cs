@@ -1,3 +1,4 @@
+using System.Globalization;
 using NUnit.Framework;
 using StudioLE.Core.Conversion;
 using StudioLE.Core.Tests.Resources;
@@ -21,6 +22,24 @@ internal sealed class StringToTests
 
         // Act
         ExampleEnum? result = converter.Convert(source);
+
+        // Assert
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [TestCase("1.01", 1.01)]
+    [TestCase("10", 10)]
+    [TestCase("null", null)]
+    [TestCase("", null)]
+    [TestCase("Hello, world!", null)]
+    public void StringToParseable_Double(string source, double? expected)
+    {
+        // Arrange
+        IFormatProvider format = CultureInfo.InvariantCulture;
+        StringToParseable<double> converter = new(format);
+
+        // Act
+        double? result = converter.Convert(source);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));

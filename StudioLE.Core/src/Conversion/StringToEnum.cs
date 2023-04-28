@@ -1,6 +1,6 @@
 namespace StudioLE.Core.Conversion;
 
-#if NETSTANDARD2_1
+#if ! NETSTANDARD2_0
 /// <inheritdoc />
 public class StringToEnum : IConverter<string, Enum?>
 {
@@ -14,7 +14,7 @@ public class StringToEnum : IConverter<string, Enum?>
     /// <inheritdoc />
     public Enum? Convert(string source)
     {
-        return Enum.TryParse(_enumType, source, out object result)
+        return Enum.TryParse(_enumType, source, out object? result)
             ? (Enum)result
             : null;
     }
