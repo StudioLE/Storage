@@ -70,7 +70,7 @@ public class ConverterResolver
         MethodInfo? method = converter.GetType().GetMethod("Convert");
         if (method is null)
             return null;
-        return method.Invoke(converter, new[]{ source });
+        return method.Invoke(converter, new[] { source });
     }
 
     public TResult? TryConvert<TSource, TResult>(TSource source) where TResult : struct
@@ -81,7 +81,7 @@ public class ConverterResolver
         MethodInfo? method = converter.GetType().GetMethod("Convert");
         if (method is null)
             return null;
-        object? result = method.Invoke(converter, new object[]{ source! });
+        object? result = method.Invoke(converter, new object[] { source! });
         return result is TResult tResult
             ? tResult
             : null;
@@ -92,12 +92,12 @@ public class ConverterResolver
         ConstructorInfo[] constructors = converterType.GetConstructors();
         ConstructorInfo? parameterlessConstructor = constructors
             .FirstOrDefault(x => x.GetParameters().Length == 0);
-        if(parameterlessConstructor is not null)
+        if (parameterlessConstructor is not null)
             return Activator.CreateInstance(converterType);
         ConstructorInfo? typeConstructor = constructors
             .FirstOrDefault(x => x.GetParameters().Length == 1
             && x.GetParameters().First().ParameterType == typeof(Type));
-        if(typeConstructor is not null)
+        if (typeConstructor is not null)
             return Activator.CreateInstance(converterType, resultType);
         return null;
     }
@@ -119,9 +119,9 @@ public class ConverterResolver
     public static ConverterResolver Default()
     {
         return new ConverterResolverBuilder()
-            #if ! NETSTANDARD2_0
+#if !NETSTANDARD2_0
             .Register<string, Enum?, StringToEnum>()
-            #endif
+#endif
             .Register<string, int?, StringToInteger>()
             .Register<string, double?, StringToDouble>()
             .Register<string, string?, StringToString>()
