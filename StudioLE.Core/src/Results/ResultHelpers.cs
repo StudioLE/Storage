@@ -1,4 +1,4 @@
-﻿using StudioLE.Core.System;
+using StudioLE.Core.System;
 
 namespace StudioLE.Core.Results;
 

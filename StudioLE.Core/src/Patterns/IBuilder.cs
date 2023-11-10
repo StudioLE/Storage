@@ -1,4 +1,4 @@
-﻿namespace StudioLE.Core.Patterns;
+namespace StudioLE.Core.Patterns;
 
 /// <summary>
 /// Build a <typeparamref name="TResult"/> using a <see href="https://refactoring.guru/design-patterns/builder">builder pattern</see>.

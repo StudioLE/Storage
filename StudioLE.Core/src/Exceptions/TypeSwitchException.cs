@@ -1,4 +1,4 @@
-﻿namespace StudioLE.Core.Exceptions;
+namespace StudioLE.Core.Exceptions;
 
 /// <summary>
 /// An error which occurs when a type ois not handled by a switch.

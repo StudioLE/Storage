@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using StudioLE.Core.Measurements;
 
 namespace StudioLE.Core.Tests.Measurements;

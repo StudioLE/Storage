@@ -1,4 +1,4 @@
-﻿namespace StudioLE.Core.Results;
+namespace StudioLE.Core.Results;
 
 public interface IResult
 {

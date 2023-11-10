@@ -1,4 +1,4 @@
-﻿namespace StudioLE.Core.Tests.Resources;
+namespace StudioLE.Core.Tests.Resources;
 
 public enum ExampleEnum
 {

@@ -1,4 +1,4 @@
-﻿namespace StudioLE.Core.Measurements;
+namespace StudioLE.Core.Measurements;
 
 /// <summary>
 /// Methods to help format anything.

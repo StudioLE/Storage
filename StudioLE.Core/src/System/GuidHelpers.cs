@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CommentTypo
+// ReSharper disable once CommentTypo
 //
 // The majority of the logic in GuidHelpers is from Faithlife.Utility
 // https://github.com/Faithlife/FaithlifeUtility

@@ -1,4 +1,4 @@
-﻿namespace StudioLE.Core.Collections;
+namespace StudioLE.Core.Collections;
 
 /// <summary>
 /// Methods to help with <see cref="IReadOnlyCollection{T}"/>.
