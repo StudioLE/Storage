@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>An abstract interface for the implementation of file storage.</Description>
+    <RootNamespace>StudioLE.Storage</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Use consistent properties across all projects -->
+  <Import Project="..\..\Global.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="StudioLE.Results" Version="0.6.0" />
+  </ItemGroup>
+</Project>
