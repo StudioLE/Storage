@@ -4,7 +4,7 @@ using Azure.Storage.Blobs.Models;
 using StudioLE.Extensions.System.IO;
 using StudioLE.Results;
 
-namespace StudioLE.Storage;
+namespace StudioLE.Storage.Blob;
 
 /// <summary>
 /// A strategy to store files in Azure Blob Storage.

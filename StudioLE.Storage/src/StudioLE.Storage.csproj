@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <Description>File storage implementations.</Description>
-    <RootNamespace>StudioLE.Storage</RootNamespace>
   </PropertyGroup>
 
   <!-- Use consistent properties across all projects -->

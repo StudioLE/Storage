@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using StudioLE.Extensions.System;
 using StudioLE.Results;
+using StudioLE.Storage.Blob;
 
 namespace StudioLE.Storage.Tests;
 
