@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Extensions.System\src\StudioLE.Extensions.System.csproj" />
+    <ProjectReference Include="..\..\StudioLE.Patterns.Abstractions\src\StudioLE.Patterns.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace StudioLE.Core.Patterns;
+namespace StudioLE.Patterns;
 
 /// <summary>
 /// Produce <typeparamref name="TResult"/> from <typeparamref name="TSource"/>

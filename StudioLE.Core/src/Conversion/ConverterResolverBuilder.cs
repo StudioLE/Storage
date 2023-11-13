@@ -1,4 +1,4 @@
-using StudioLE.Core.Patterns;
+using StudioLE.Patterns;
 
 namespace StudioLE.Core.Conversion;
 
