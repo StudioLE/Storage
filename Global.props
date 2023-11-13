@@ -23,7 +23,7 @@
     <!-- If non-test library -->
     <When Condition="'$(OutputType)' == 'Library' AND ! $(MSBuildProjectName.EndsWith('.Tests'))">
       <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;net7.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <IsPackable>true</IsPackable>
       </PropertyGroup>
 
