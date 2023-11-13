@@ -7,6 +7,10 @@
   <!-- Use consistent properties across all projects -->
   <Import Project="../../Global.props"/>
 
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Patterns.Abstractions\src\StudioLE.Patterns.Abstractions.csproj" />
   </ItemGroup>
