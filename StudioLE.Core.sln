@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Conversion", "Stud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Conversion.Tests", "StudioLE.Conversion\tests\StudioLE.Conversion.Tests.csproj", "{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Serialization.Abstractions", "StudioLE.Serialization.Abstractions\src\StudioLE.Serialization.Abstractions.csproj", "{52AB8B83-D1B1-409B-8A62-BF56A2328B95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

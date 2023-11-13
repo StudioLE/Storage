@@ -1,6 +1,4 @@
-using System.IO;
-
-namespace StudioLE.Core.Serialization;
+namespace StudioLE.Serialization;
 
 /// <summary>
 /// A generic object deserializer.
