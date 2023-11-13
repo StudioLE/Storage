@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Core", "StudioLE.Core\src\StudioLE.Core.csproj", "{AA4C382F-D586-47B9-A56C-9FA6FA04B2BA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Core.Tests", "StudioLE.Core\tests\StudioLE.Core.Tests.csproj", "{DA7AF7AA-2D39-468C-96EA-32785B4FD623}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.System", "StudioLE.Extensions.System\src\StudioLE.Extensions.System.csproj", "{5F4E8B7A-BB86-419A-B7F1-27C19158348E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.System.Tests", "StudioLE.Extensions.System\tests\StudioLE.Extensions.System.Tests.csproj", "{F516DF59-053A-4F61-BBAE-F2E583ACA820}"
@@ -19,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Conversion.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Serialization.Abstractions", "StudioLE.Serialization.Abstractions\src\StudioLE.Serialization.Abstractions.csproj", "{52AB8B83-D1B1-409B-8A62-BF56A2328B95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Results", "StudioLE.Results\src\StudioLE.Results.csproj", "{CA94E0B7-A9A9-4407-A414-D04C2A722A98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,14 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AA4C382F-D586-47B9-A56C-9FA6FA04B2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA4C382F-D586-47B9-A56C-9FA6FA04B2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA4C382F-D586-47B9-A56C-9FA6FA04B2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA4C382F-D586-47B9-A56C-9FA6FA04B2BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,5 +50,9 @@ Global
 		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52AB8B83-D1B1-409B-8A62-BF56A2328B95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA94E0B7-A9A9-4407-A414-D04C2A722A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA94E0B7-A9A9-4407-A414-D04C2A722A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA94E0B7-A9A9-4407-A414-D04C2A722A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA94E0B7-A9A9-4407-A414-D04C2A722A98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,4 @@
-using StudioLE.Extensions.System;
-
-namespace StudioLE.Core.Results;
+namespace StudioLE.Results;
 
 public static class ResultHelpers
 {
@@ -23,7 +21,7 @@ public static class ResultHelpers
             ? string.Empty
             : contextMessage + Environment.NewLine;
         if (result.Errors.Any())
-            message += result.Errors.Join() + Environment.NewLine;
+            message += string.Join(Environment.NewLine, result.Errors) + Environment.NewLine;
         throw new(message);
     }
 
@@ -39,7 +37,7 @@ public static class ResultHelpers
             ? string.Empty
             : contextMessage + Environment.NewLine;
         if (result.Errors.Any())
-            message += result.Errors.Join() + Environment.NewLine;
+            message += string.Join(Environment.NewLine, result.Errors) + Environment.NewLine;
         throw new(message);
     }
 }
