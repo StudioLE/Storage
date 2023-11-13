@@ -1,8 +1,8 @@
 using System.Reflection;
 using NUnit.Framework;
-using StudioLE.Core.System;
+using StudioLE.Extensions.System.Reflection;
 
-namespace StudioLE.Core.Tests.System;
+namespace StudioLE.Extensions.System.Tests;
 
 internal sealed class AssemblyHelpersTests
 {
@@ -20,6 +20,6 @@ internal sealed class AssemblyHelpersTests
         Console.WriteLine(names.Join());
 
         // Assert
-        Assert.That(names.ElementAt(0), Is.EqualTo("StudioLE.Core.Tests"));
+        Assert.That(names.ElementAt(0), Is.EqualTo("StudioLE.Extensions.System.Tests"));
     }
 }

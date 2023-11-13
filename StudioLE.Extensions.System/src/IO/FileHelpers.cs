@@ -1,6 +1,4 @@
-using System.IO;
-
-namespace StudioLE.Core.System.IO;
+namespace StudioLE.Extensions.System.IO;
 
 /// <summary>
 /// Methods to help with <see cref="FileInfo"/>.

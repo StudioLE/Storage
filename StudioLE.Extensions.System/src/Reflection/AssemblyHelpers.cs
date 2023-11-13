@@ -1,8 +1,7 @@
 using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 
-namespace StudioLE.Core.System;
+namespace StudioLE.Extensions.System.Reflection;
 
 /// <summary>
 /// Methods to help with <see cref="Assembly"/>.

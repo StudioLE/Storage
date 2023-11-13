@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Core", "StudioLE.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Core.Tests", "StudioLE.Core\tests\StudioLE.Core.Tests.csproj", "{DA7AF7AA-2D39-468C-96EA-32785B4FD623}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.System", "StudioLE.Extensions.System\src\StudioLE.Extensions.System.csproj", "{5F4E8B7A-BB86-419A-B7F1-27C19158348E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.System.Tests", "StudioLE.Extensions.System\tests\StudioLE.Extensions.System.Tests.csproj", "{F516DF59-053A-4F61-BBAE-F2E583ACA820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA7AF7AA-2D39-468C-96EA-32785B4FD623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4E8B7A-BB86-419A-B7F1-27C19158348E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F516DF59-053A-4F61-BBAE-F2E583ACA820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F516DF59-053A-4F61-BBAE-F2E583ACA820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F516DF59-053A-4F61-BBAE-F2E583ACA820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F516DF59-053A-4F61-BBAE-F2E583ACA820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

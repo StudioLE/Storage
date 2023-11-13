@@ -12,7 +12,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace StudioLE.Core.System;
+namespace StudioLE.Extensions.System;
 
 /// <summary>
 /// Helper methods for working with <see cref="Guid"/>.

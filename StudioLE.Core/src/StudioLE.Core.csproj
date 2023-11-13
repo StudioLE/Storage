@@ -11,4 +11,8 @@
     <Using Remove="System.IO"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\StudioLE.Extensions.System\src\StudioLE.Extensions.System.csproj" />
+  </ItemGroup>
+
 </Project>

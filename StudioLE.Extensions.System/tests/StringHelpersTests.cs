@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using StudioLE.Core.System;
 
-namespace StudioLE.Core.Tests.System;
+namespace StudioLE.Extensions.System.Tests;
 
 internal sealed class StringHelpersTests
 {

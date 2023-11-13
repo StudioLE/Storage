@@ -1,4 +1,4 @@
-namespace StudioLE.Core.System;
+namespace StudioLE.Extensions.System;
 
 /// <summary>
 /// Methods to help with <see cref="Uri"/>.

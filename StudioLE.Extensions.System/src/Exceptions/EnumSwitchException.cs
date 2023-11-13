@@ -1,4 +1,4 @@
-namespace StudioLE.Core.Exceptions;
+namespace StudioLE.Extensions.System.Exceptions;
 
 /// <summary>
 /// An error which occurs when the value of an <see cref="Enum"/> is not handled by a switch.
