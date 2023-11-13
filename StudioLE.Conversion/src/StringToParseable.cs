@@ -1,5 +1,7 @@
 #if NET7_0_OR_GREATER
-namespace StudioLE.Core.Conversion;
+using StudioLE.Patterns;
+
+namespace StudioLE.Conversion;
 
 /// <inheritdoc/>
 public class StringToParseable<TStruct> : IConverter<string, TStruct?> where TStruct : struct, IParsable<TStruct>

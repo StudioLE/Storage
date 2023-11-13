@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Standardized conversion methods for primitives.</Description>
+  </PropertyGroup>
+
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../Global.props"/>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\StudioLE.Patterns.Abstractions\src\StudioLE.Patterns.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

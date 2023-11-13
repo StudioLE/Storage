@@ -1,9 +1,8 @@
 using System.Globalization;
 using NUnit.Framework;
-using StudioLE.Core.Conversion;
-using StudioLE.Core.Tests.Resources;
+using StudioLE.Conversion.Tests.Resources;
 
-namespace StudioLE.Core.Tests.Converters;
+namespace StudioLE.Conversion.Tests;
 
 internal sealed class StringToTests
 {

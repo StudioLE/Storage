@@ -1,6 +1,6 @@
 using StudioLE.Patterns;
 
-namespace StudioLE.Core.Conversion;
+namespace StudioLE.Conversion;
 
 /// <summary>
 /// Build an <see cref="ConverterResolver"/>.

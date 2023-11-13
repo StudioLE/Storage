@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.System.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Patterns.Abstractions", "StudioLE.Patterns.Abstractions\src\StudioLE.Patterns.Abstractions.csproj", "{D2618752-287B-4349-8B2B-7BEF9A48FAB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Conversion", "StudioLE.Conversion\src\StudioLE.Conversion.csproj", "{7B5D8462-BD2C-4959-B2FF-37192D14E1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Conversion.Tests", "StudioLE.Conversion\tests\StudioLE.Conversion.Tests.csproj", "{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{D2618752-287B-4349-8B2B-7BEF9A48FAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2618752-287B-4349-8B2B-7BEF9A48FAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2618752-287B-4349-8B2B-7BEF9A48FAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B5D8462-BD2C-4959-B2FF-37192D14E1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5D8462-BD2C-4959-B2FF-37192D14E1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5D8462-BD2C-4959-B2FF-37192D14E1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5D8462-BD2C-4959-B2FF-37192D14E1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC15EA3A-B4A7-4C51-9B8D-73BA9C494A57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

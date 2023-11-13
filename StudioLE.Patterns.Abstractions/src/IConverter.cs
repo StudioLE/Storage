@@ -1,4 +1,4 @@
-namespace StudioLE.Core.Conversion;
+namespace StudioLE.Patterns;
 
 /// <summary>
 /// Convert from a <typeparamref name="TSource"/> to <typeparamref name="TResult"/>.

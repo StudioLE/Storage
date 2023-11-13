@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace StudioLE.Core.Conversion;
+namespace StudioLE.Conversion;
 
 /// <summary>
 /// A dependency injection service to resolve a converter for a specified type.

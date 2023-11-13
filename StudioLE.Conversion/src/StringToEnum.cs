@@ -1,4 +1,6 @@
-namespace StudioLE.Core.Conversion;
+using StudioLE.Patterns;
+
+namespace StudioLE.Conversion;
 
 #if ! NETSTANDARD2_0
 /// <inheritdoc />

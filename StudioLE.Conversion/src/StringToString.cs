@@ -1,4 +1,6 @@
-namespace StudioLE.Core.Conversion;
+using StudioLE.Patterns;
+
+namespace StudioLE.Conversion;
 
 /// <inheritdoc />
 public class StringToString : IConverter<string, string?>
