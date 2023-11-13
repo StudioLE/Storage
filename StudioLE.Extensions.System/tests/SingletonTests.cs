@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace StudioLE.Core.Tests.Patterns;
+namespace StudioLE.Extensions.System.Tests;
 
 internal sealed class SingletonTests
 {
