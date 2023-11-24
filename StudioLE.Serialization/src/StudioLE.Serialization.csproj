@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Abstract interfaces to declare a standardized approach to serialization is implemented.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\StudioLE.Serialization.Abstractions\src\StudioLE.Serialization.Abstractions.csproj" />
+  </ItemGroup>
+
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../Global.props"/>
+
+</Project>
