@@ -5,10 +5,10 @@
     <RootNamespace>StudioLE.Storage</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\StudioLE.Results\src\StudioLE.Results.csproj" />
+  </ItemGroup>
+
   <!-- Use consistent properties across all projects -->
   <Import Project="..\..\Global.props" />
-  
-  <ItemGroup>
-    <PackageReference Include="StudioLE.Results" Version="0.6.0" />
-  </ItemGroup>
 </Project>
