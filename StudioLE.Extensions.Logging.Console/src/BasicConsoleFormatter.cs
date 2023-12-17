@@ -36,15 +36,11 @@ public sealed class BasicConsoleFormatter : ConsoleFormatter, IDisposable
             textWriter.WriteLine(message);
             return;
         }
-        ConsoleColor? foregroundColor = GetForegroundColor(logEntry.LogLevel);
-        string foregroundColorAnsi = AnsiHelpers.GetForegroundColorEscapeCode(foregroundColor);
-        textWriter.Write(foregroundColorAnsi);
-        ConsoleColor? backgroundColor = GetBackgroundColor(logEntry.LogLevel);
-        string backgroundColorAnsi = AnsiHelpers.GetBackgroundColorEscapeCode(backgroundColor);
-        textWriter.Write(backgroundColorAnsi);
+        string ansiFormat = GetAnsiFormat(logEntry.LogLevel);
+        textWriter.Write(AnsiHelpers.ResetSequence());
+        textWriter.Write(ansiFormat);
         textWriter.Write(message);
-        textWriter.Write(AnsiHelpers.DefaultForegroundColor);
-        textWriter.Write(AnsiHelpers.DefaultBackgroundColor);
+        textWriter.Write(AnsiHelpers.ResetSequence());
         textWriter.WriteLine();
     }
 
@@ -53,28 +49,36 @@ public sealed class BasicConsoleFormatter : ConsoleFormatter, IDisposable
         _optionsReloadToken?.Dispose();
     }
 
-    public ConsoleColor? GetForegroundColor(LogLevel logLevel)
+    private static string GetAnsiFormat(LogLevel logLevel)
     {
         return logLevel switch
         {
-            LogLevel.Trace => ConsoleColor.DarkGray,
-            LogLevel.Debug => ConsoleColor.DarkGray,
-            LogLevel.Information => ConsoleColor.Green,
-            LogLevel.Warning => ConsoleColor.Yellow,
-            LogLevel.Error => ConsoleColor.Red,
-            LogLevel.Critical => ConsoleColor.Black,
-            LogLevel.None => ConsoleColor.DarkMagenta,
-            _ => null
-        };
-    }
-
-    private static ConsoleColor? GetBackgroundColor(LogLevel logLevel)
-    {
-        return logLevel switch
-        {
-            LogLevel.Critical => ConsoleColor.DarkRed,
-            LogLevel.None => ConsoleColor.DarkMagenta,
-            _ => null
+            LogLevel.Trace => new AnsiFormatBuilder()
+                .WithStyle(AnsiStyle.Dim)
+                .Build(),
+            LogLevel.Debug => new AnsiFormatBuilder()
+                .WithStyle(AnsiStyle.Dim)
+                .Build(),
+            LogLevel.Information => new AnsiFormatBuilder()
+                .WithBrightForegroundColor(AnsiColor.White)
+                .Build(),
+            LogLevel.Warning => new AnsiFormatBuilder()
+                .WithForegroundColor(AnsiColor.Yellow)
+                .Build(),
+            LogLevel.Error => new AnsiFormatBuilder()
+                .WithForegroundColor(AnsiColor.Red)
+                .Build(),
+            LogLevel.Critical => new AnsiFormatBuilder()
+                .WithForegroundColor(AnsiColor.Black)
+                .WithBackgroundColor(AnsiColor.Red)
+                .Build(),
+            LogLevel.None => new AnsiFormatBuilder()
+                .WithBackgroundColor(AnsiColor.Magenta)
+                .Build(),
+            (LogLevel)10 => new AnsiFormatBuilder()
+                .WithForegroundColor(AnsiColor.Cyan)
+                .Build(),
+            _ => string.Empty
         };
     }
 }

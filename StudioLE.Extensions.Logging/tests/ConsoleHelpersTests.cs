@@ -4,7 +4,7 @@ using StudioLE.Diagnostics.NUnit;
 using StudioLE.Verify;
 using SystemConsole = System.Console;
 
-namespace StudioLE.Extensions.Logging.Console.Tests;
+namespace StudioLE.Extensions.Logging.Tests;
 
 internal sealed class ConsoleHelpersTests
 {

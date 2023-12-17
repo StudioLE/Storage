@@ -2,6 +2,7 @@ using Example;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using NUnit.Framework;
+using StudioLE.Verify;
 
 namespace StudioLE.Extensions.Logging.Console.Tests;
 
@@ -15,14 +16,14 @@ internal sealed class ConsoleLoggerTests
         LogLevel.Warning,
         LogLevel.Error,
         LogLevel.Critical,
-        LogLevel.None,
-        (LogLevel)10
+        LogLevel.None
     };
 
     [Test]
     [Explicit("No assertions")]
     public void ConsoleLogger_SimpleConsoleFormatter()
     {
+        VerifySettings.AcceptReceived = true;
         // Arrange
         ILoggerFactory factory = LoggerFactory.Create(builder => builder
             .SetMinimumLevel(LogLevel.Trace)

@@ -1,14 +1,12 @@
-using SystemConsole = System.Console;
-
-namespace StudioLE.Extensions.Logging.Console;
+namespace StudioLE.Extensions.Logging;
 
 /// <summary>
-/// Methods to help with <see cref="SystemConsole"/>.
+/// Methods to help with <see cref="Console"/>.
 /// </summary>
 public static class ConsoleHelpers
 {
     /// <summary>
-    /// Capture anything written to the <see cref="SystemConsole"/> standard output when <paramref name="action"/> is executed.
+    /// Capture anything written to the <see cref="Console"/> standard output when <paramref name="action"/> is executed.
     /// </summary>
     /// <remarks>
     /// This will not capture the output of <c>ConsoleLogger</c> as that runs on a separate thread.
@@ -20,15 +18,15 @@ public static class ConsoleHelpers
         string output;
         using (StringWriter redirectedOutputWriter = new())
         {
-            SystemConsole.SetOut(redirectedOutputWriter);
+            Console.SetOut(redirectedOutputWriter);
             action.Invoke();
             output = redirectedOutputWriter.ToString();
         }
-        StreamWriter standardOutputWriter = new(SystemConsole.OpenStandardOutput())
+        StreamWriter standardOutputWriter = new(Console.OpenStandardOutput())
         {
             AutoFlush = true
         };
-        SystemConsole.SetOut(standardOutputWriter);
+        Console.SetOut(standardOutputWriter);
         return output;
     }
 }
