@@ -1,4 +1,4 @@
-using StudioLE.Results;
+using Microsoft.Extensions.Logging;
 
 namespace StudioLE.Storage;
 
@@ -8,25 +8,38 @@ namespace StudioLE.Storage;
 public class ServerStorageStrategy : IStorageStrategy
 {
     private readonly string _directory = Path.GetTempPath();
+    private readonly ILogger<ServerStorageStrategy> _logger;
+
+    /// <summary>
+    /// DI constructor for <see cref="ServerStorageStrategy"/>.
+    /// </summary>
+    public ServerStorageStrategy(ILogger<ServerStorageStrategy> logger)
+    {
+        _logger = logger;
+    }
 
     /// <inheritdoc/>
-    public async Task<IResult<Uri>> WriteAsync(string fileName, Stream stream)
+    public async Task<Uri?> WriteAsync(string fileName, Stream stream)
     {
         try
         {
             string absolutePath = Path.Combine(_directory, fileName);
             if (File.Exists(absolutePath))
-                return new Failure<Uri>("Failed to write to file storage. The file already exists.");
+            {
+                _logger.LogError("Failed to write to file storage. The file already exists.");
+                return null;
+            }
             using FileStream fileStream = new(absolutePath, FileMode.Create, FileAccess.Write);
             await stream.CopyToAsync(fileStream);
             stream.Close();
             stream.Dispose();
             string uri = VisualizationConfiguration.BaseAddress + "/" + VisualizationConfiguration.StorageRoute + "/" + fileName;
-            return new Success<Uri>(new(uri));
+            return new(uri);
         }
         catch (Exception e)
         {
-            return new Failure<Uri>("Failed to write to file storage.", e);
+            _logger.LogError(e, "Failed to write to file storage.");
+            return null;
         }
     }
 

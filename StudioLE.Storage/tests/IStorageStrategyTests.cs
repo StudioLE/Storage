@@ -1,6 +1,7 @@
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using StudioLE.Extensions.Logging.Cache;
 using StudioLE.Extensions.System;
-using StudioLE.Results;
 using StudioLE.Storage.Blob;
 
 namespace StudioLE.Storage.Tests;
@@ -11,7 +12,10 @@ internal sealed class StorageStrategyTests
     public async Task FileStorageStrategy_WriteAsync()
     {
         // Arrange
-        IStorageStrategy storageStrategy = new FileStorageStrategy();
+        CacheLoggerProvider cache = new();
+        LoggerFactory loggerFactory = new(new[] { cache });
+        ILogger<FileStorageStrategy> logger = loggerFactory.CreateLogger<FileStorageStrategy>();
+        IStorageStrategy storageStrategy = new FileStorageStrategy(logger);
         MemoryStream stream = new();
         StreamWriter writer = new(stream);
         writer.Write("Hello, world.");
@@ -20,17 +24,14 @@ internal sealed class StorageStrategyTests
         string fileName = Guid.NewGuid() + ".txt";
 
         // Act
-        IResult<Uri> result = await storageStrategy.WriteAsync(fileName, stream);
-        if (result.Errors.Any())
-            Console.WriteLine(result.Errors.Join());
+        Uri? uri = await storageStrategy.WriteAsync(fileName, stream);
+        if (cache.Logs.Count != 0)
+            Console.WriteLine(cache.Logs.Select(x => x.Message).Join());
 
         // Assert
-        Assert.That(result is Success<Uri>, "Result is success.");
-        if (result is Success<Uri> success)
-        {
-            Assert.That(success.Value.IsFile, "Uri is file");
-            Assert.That(File.Exists(success.Value.AbsolutePath), "File exists");
-        }
+        Assert.That(uri, Is.Not.Null);
+        Assert.That(uri!.IsFile, "Uri is file");
+        Assert.That(File.Exists(uri.AbsolutePath), "File exists");
     }
 
     [Test]
@@ -39,7 +40,10 @@ internal sealed class StorageStrategyTests
     public async Task BlobStorageStrategy_WriteAsync()
     {
         // Arrange
-        IStorageStrategy storageStrategy = new BlobStorageStrategy();
+        CacheLoggerProvider cache = new();
+        LoggerFactory loggerFactory = new(new[] { cache });
+        ILogger<BlobStorageStrategy> logger = loggerFactory.CreateLogger<BlobStorageStrategy>();
+        IStorageStrategy storageStrategy = new BlobStorageStrategy(logger);
         MemoryStream stream = new();
         StreamWriter writer = new(stream);
         writer.Write("Hello, world.");
@@ -48,16 +52,13 @@ internal sealed class StorageStrategyTests
         string fileName = Guid.NewGuid() + ".txt";
 
         // Act
-        IResult<Uri> result = await storageStrategy.WriteAsync(fileName, stream);
-        if (result.Errors.Any())
-            Console.WriteLine(result.Errors.Join());
+        Uri? uri = await storageStrategy.WriteAsync(fileName, stream);
+        if (cache.Logs.Count != 0)
+            Console.WriteLine(cache.Logs.Select(x => x.Message).Join());
 
         // Assert
-        Assert.That(result is Success<Uri>, "Result is success.");
-        if (result is Success<Uri> success)
-            Assert.That(success.Value.IsFile, Is.False, "Uri is file");
-        if (result.Errors.Any())
-            foreach (string error in result.Errors)
-                Console.WriteLine(error);
+        Assert.That(uri, Is.Not.Null);
+        Assert.That(uri!.IsFile, Is.False, "Uri is file");
+        Assert.That(File.Exists(uri.AbsolutePath), "File exists");
     }
 }

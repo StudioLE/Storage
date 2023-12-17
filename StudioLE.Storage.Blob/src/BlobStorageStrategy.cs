@@ -1,8 +1,8 @@
 using Azure.Core;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.Extensions.Logging;
 using StudioLE.Extensions.System.IO;
-using StudioLE.Results;
 
 namespace StudioLE.Storage.Blob;
 
@@ -24,10 +24,19 @@ public class BlobStorageStrategy : IStorageStrategy
             Mode = RetryMode.Fixed
         }
     };
+    private readonly ILogger<BlobStorageStrategy> _logger;
     private readonly BlobContainerClient _container = new(BlobConnectionString, BlobContainer, _blobOptions);
 
+    /// <summary>
+    /// DI constructor for <see cref="BlobStorageStrategy"/>.
+    /// </summary>
+    public BlobStorageStrategy(ILogger<BlobStorageStrategy> logger)
+    {
+        _logger = logger;
+    }
+
     /// <inheritdoc/>
-    public async Task<IResult<Uri>> WriteAsync(string fileName, Stream stream)
+    public async Task<Uri?> WriteAsync(string fileName, Stream stream)
     {
         try
         {
@@ -39,11 +48,12 @@ public class BlobStorageStrategy : IStorageStrategy
             await blob.UploadAsync(stream, headers);
             stream.Close();
             stream.Dispose();
-            return new Success<Uri>(blob.Uri);
+            return blob.Uri;
         }
         catch (Exception e)
         {
-            return new Failure<Uri>(e);
+            _logger.LogError(e, "Failed to write to blob storage.");
+            return null;
         }
     }
 }
