@@ -3,14 +3,14 @@ using StudioLE.Patterns;
 namespace StudioLE.Conversion;
 
 /// <summary>
-/// Build an <see cref="ConverterResolver"/>.
+/// Build a <see cref="ConverterResolver"/> using a <see href="https://refactoring.guru/design-patterns/builder">builder pattern</see>.
 /// </summary>
 public class ConverterResolverBuilder : IBuilder<ConverterResolver>
 {
     private readonly Dictionary<Type, Dictionary<Type, Type>> _registry = new();
 
     /// <summary>
-    /// Register a converter as resolvable by <see cref="Type"/>.
+    /// Register a converter, <typeparamref name="TConverter"/>, to convert <typeparamref name="TSource"/> to <typeparamref name="TResult"/>.
     /// </summary>
     /// <returns>The builder.</returns>
     public ConverterResolverBuilder Register<TSource, TResult, TConverter>() where TConverter : IConverter<TSource, TResult>
