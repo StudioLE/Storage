@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Storage.Blob", "St
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conversion", "Conversion", "{3CDEEDF8-1123-4B0B-8BE4-E647F48D25D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{EBF0D186-4AC0-4826-B5B7-9B72DDBFCED0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System", "System", "{EBF0D186-4AC0-4826-B5B7-9B72DDBFCED0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{C7C1DC0C-03F1-4E6F-B14C-698127E83426}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Serialization", "StudioLE.Serialization\src\StudioLE.Serialization.csproj", "{1DF06B7F-C849-4F5A-93F4-92BE9001E3FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Serialization.Yaml", "StudioLE.Serialization.Yaml\src\StudioLE.Serialization.Yaml.csproj", "{7F652B18-4867-4BE1-A72F-C7B1D5505058}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{4BEB73F7-6B56-4D27-B1A6-AFE763FFBB4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
