@@ -15,7 +15,8 @@ internal sealed class ConsoleLoggerTests
         LogLevel.Warning,
         LogLevel.Error,
         LogLevel.Critical,
-        LogLevel.None
+        LogLevel.None,
+        (LogLevel)10
     };
 
     [Test]
@@ -49,10 +50,36 @@ internal sealed class ConsoleLoggerTests
         // Act
         foreach (LogLevel logLevel in _logLevels)
         {
-            colorLogger.Log(logLevel, $"This is a log with color.{Environment.NewLine}With an additional line.");
-            withoutColorLogger.Log(logLevel, $"This is a log without color.{Environment.NewLine}With an additional line.");
-            singleLineLogger.Log(logLevel, $"This is a log on a single line.{Environment.NewLine}With an additional line.");
+            colorLogger.Log(logLevel, $"This is a {logLevel} log with color.{Environment.NewLine}With an additional line.");
+            withoutColorLogger.Log(logLevel, $"This is a {logLevel} log without color.{Environment.NewLine}With an additional line.");
+            singleLineLogger.Log(logLevel, $"This is a {logLevel} log on a single line.{Environment.NewLine}With an additional line.");
         }
+
+        // Assert
+    }
+
+    [Test]
+    [Explicit("No assertions")]
+    public void ConsoleLogger_BasicConsoleFormatter()
+    {
+        // Arrange
+        ILoggerFactory factory = LoggerFactory.Create(builder => builder
+            .SetMinimumLevel(LogLevel.Trace)
+            .AddBasicConsole());
+        ILogger<ExampleContext> colorLogger = factory.CreateLogger<ExampleContext>();
+        factory = LoggerFactory.Create(builder => builder
+            .SetMinimumLevel(LogLevel.Trace)
+            .AddBasicConsole(options =>
+            {
+                options.DisableColors = true;
+            }));
+        ILogger<ExampleContext> withoutColorLogger = factory.CreateLogger<ExampleContext>();
+
+        // Act
+        foreach (LogLevel logLevel in _logLevels)
+            withoutColorLogger.Log(logLevel, $"This is a {logLevel} log without color.");
+        foreach (LogLevel logLevel in _logLevels)
+            colorLogger.Log(logLevel, $"This is a {logLevel} log with color.");
 
         // Assert
     }
