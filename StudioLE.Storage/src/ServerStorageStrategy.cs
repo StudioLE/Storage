@@ -30,6 +30,7 @@ public class ServerStorageStrategy : IStorageStrategy
         }
     }
 
+    // TODO: Replace Configuration with IOption DI constructor, with default overload.
     private static class VisualizationConfiguration
     {
         /// <summary>

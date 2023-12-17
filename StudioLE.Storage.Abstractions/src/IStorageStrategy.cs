@@ -3,7 +3,7 @@ using StudioLE.Results;
 namespace StudioLE.Storage;
 
 /// <summary>
-/// A strategy to store files.
+/// A <see href="https://refactoring.guru/design-patterns/strategy">strategy pattern</see> to store files.
 /// </summary>
 public interface IStorageStrategy
 {

@@ -4,6 +4,7 @@ namespace StudioLE.Storage;
 
 /// <summary>
 /// A strategy to store files in the local file system.
+/// using a <see href="https://refactoring.guru/design-patterns/strategy">strategy pattern</see>.
 /// </summary>
 public class FileStorageStrategy : IStorageStrategy
 {
