@@ -6,11 +6,9 @@ namespace StudioLE.Extensions.System;
 public static class MathHelpers
 {
     /// <summary>
-    /// Return an enumerable which is the cumulative sum of each proceeding value in <paramref name="sequence"/>.
+    /// Return an enumerable which is the cumulative sum of each preceding value in <paramref name="sequence"/>.
     /// </summary>
-    /// <remarks>
-    /// <see href="https://stackoverflow.com/a/4831908/247218">Source</see>
-    /// </remarks>
+    /// <seealso href="https://stackoverflow.com/a/4831908/247218">Source</seealso>
     public static IEnumerable<double> CumulativeSum(this IEnumerable<double> sequence)
     {
         double sum = 0;
@@ -22,22 +20,28 @@ public static class MathHelpers
     }
 
     /// <summary>
-    /// Round <paramref name="this"/> to <paramref name="decimalPlaces"/> using <see cref="MidpointRounding.AwayFromZero"/>.
+    /// Round <paramref name="this"/> to <paramref name="decimalPlaces"/> using <paramref name="rounding"/>.
     /// </summary>
-    public static double Round(this double @this, int decimalPlaces)
+    /// <remarks>
+    /// This differs from <see cref="Math.Round(double)"/> because it defaults to <see cref="MidpointRounding.AwayFromZero"/>.
+    /// </remarks>
+    public static double Round(this double @this, int decimalPlaces, MidpointRounding rounding = MidpointRounding.AwayFromZero)
     {
-        double result = Math.Round(@this, decimalPlaces, MidpointRounding.AwayFromZero);
+        double result = Math.Round(@this, decimalPlaces, rounding);
         return result == 0
             ? 0
             : result;
     }
 
     /// <summary>
-    /// Round <paramref name="this"/> to an integer using <see cref="MidpointRounding.AwayFromZero"/>.
+    /// Round <paramref name="this"/> to an integer using <paramref name="rounding"/>.
     /// </summary>
-    public static int RoundToInt(this double @this)
+    /// <remarks>
+    /// This differs from <see cref="Math.Round(double)"/> because it defaults to <see cref="MidpointRounding.AwayFromZero"/>.
+    /// </remarks>
+    public static int RoundToInt(this double @this, MidpointRounding rounding = MidpointRounding.AwayFromZero)
     {
-        return (int)Math.Round(@this, 0, MidpointRounding.AwayFromZero);
+        return (int)Math.Round(@this, 0, rounding);
     }
 
     /// <inheritdoc cref="Math.Ceiling(double)"/>

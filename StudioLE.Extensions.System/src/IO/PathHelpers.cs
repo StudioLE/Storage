@@ -21,6 +21,9 @@ public static class PathHelpers
     /// <summary>
     /// Get a unique temporary file path with the specified extension.
     /// </summary>
+    /// <remarks>
+    /// <see cref="Path.GetTempFileName()"/> is used to get a unique file name, as a side effect that file is created.
+    /// </remarks>
     public static FileInfo GetTempFile(string extension)
     {
         return new(Path.GetTempFileName() + extension);

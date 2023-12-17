@@ -37,7 +37,10 @@ public static class AssemblyHelpers
         StackFrame[] stackFrames = new StackTrace().GetFrames()
                                    ?? throw new("Failed to get stack trace frames.");
         return stackFrames
-            .Select(frame => frame.GetMethod()?.DeclaringType?.Assembly
+            .Select(frame => frame
+                                 .GetMethod()
+                                 ?.DeclaringType
+                                 ?.Assembly
                              ?? throw new("Failed to get calling assembly of frame."))
             .Skip(1);
     }
@@ -45,6 +48,7 @@ public static class AssemblyHelpers
     /// <summary>
     /// Ensure all referenced assemblies are loaded.
     /// </summary>
+    /// <param name="whereStartsWith">An optional prefix to filter the assembly names by.</param>
     public static void LoadAllAssemblies(string? whereStartsWith = null)
     {
         if (_areAllAssembliesLoaded)
@@ -71,6 +75,9 @@ public static class AssemblyHelpers
     /// <summary>
     /// Ensure all referenced assemblies are loaded.
     /// </summary>
+    /// <remarks>
+    /// This is just a wrapper for <see cref="Assembly.LoadFile(string)"/> which will throw if passed a relative path.
+    /// </remarks>
     public static Assembly LoadFileByRelativePath(string relativePath)
     {
         FileInfo file = new(relativePath);

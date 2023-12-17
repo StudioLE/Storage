@@ -1,7 +1,7 @@
 namespace StudioLE.Extensions.System.Exceptions;
 
 /// <summary>
-/// An error which occurs when a type ois not handled by a switch.
+/// An error which occurs when a type is not handled by a switch.
 /// </summary>
 public sealed class TypeSwitchException<T> : Exception
 {
