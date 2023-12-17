@@ -10,6 +10,9 @@ public static class ConsoleHelpers
     /// <summary>
     /// Capture anything written to the <see cref="SystemConsole"/> standard output when <paramref name="action"/> is executed.
     /// </summary>
+    /// <remarks>
+    /// This will not capture the output of <c>ConsoleLogger</c> as that runs on a separate thread.
+    /// </remarks>
     /// <param name="action">The action to capture standard output of.</param>
     /// <returns>The captured output.</returns>
     public static string CaptureConsoleOutput(Action action)
