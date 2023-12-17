@@ -30,6 +30,7 @@ public class YamlDeserializer : IDeserializer
     /// <remarks>
     /// The default deserializer ignores unmatched properties.
     /// </remarks>
+    /// <param name="logger">The logger to use.</param>
     public YamlDeserializer(ILogger<YamlDeserializer> logger)
     {
         _logger = logger;

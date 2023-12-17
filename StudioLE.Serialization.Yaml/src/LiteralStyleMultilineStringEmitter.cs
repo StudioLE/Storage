@@ -7,7 +7,7 @@ namespace StudioLE.Serialization.Yaml;
 /// <summary>
 /// Set the default scalar style for multiline strings to <see cref="ScalarStyle.Literal"/>.
 /// </summary>
-/// <seealso href="https://stackoverflow.com/a/58638680/247218"/>
+/// <seealso href="https://stackoverflow.com/a/58638680/247218">Reference</seealso>
 public class LiteralStyleMultilineStringEmitter : ChainedEventEmitter
 {
     internal LiteralStyleMultilineStringEmitter(IEventEmitter nextEmitter) : base(nextEmitter)
