@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Method to help with logging to the console.</Description>
+    <Description>A collection of helper utilities for System.Console and Microsoft.Extensions.Logging</Description>
   </PropertyGroup>
 
   <ItemGroup>

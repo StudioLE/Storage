@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Method to help with logging to the console.</Description>
+    <Description>Implements BasicConsoleFormatter which formats log without scope but in color.</Description>
   </PropertyGroup>
 
   <ItemGroup>

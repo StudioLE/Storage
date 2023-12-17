@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>This is an example project library.</Description>
+    <Description>An ILogger implementation that stores logs in a collection to be retrieved later. Its primary use case is to validate logging in tests.</Description>
   </PropertyGroup>
 
   <ItemGroup>
