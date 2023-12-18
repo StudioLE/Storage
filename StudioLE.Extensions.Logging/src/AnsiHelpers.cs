@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace StudioLE.Extensions.Logging;
 
 /// <summary>
@@ -67,5 +69,15 @@ public static class AnsiHelpers
     {
         int code = (int)style;
         return $"\x1B[{code}m";
+    }
+
+    /// <summary>
+    /// Replace all ANSI escape sequences in <paramref name="input"/>.
+    /// </summary>
+    /// <param name="input">The input string.</param>
+    /// <returns>The input without any ANSI escape sequences.</returns>
+    public static string ReplaceEscapeSequences(string input)
+    {
+        return Regex.Replace(input, @"\x1B\[[0-9;]+m", string.Empty);
     }
 }

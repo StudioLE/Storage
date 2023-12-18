@@ -1,0 +1,11 @@
+Using .NET Core SDK 8.0.100
+Loading assembly /e/Repos/C#/Core/StudioLE.Conversion/src/bin/Release/netstandard2.0/StudioLE.Conversion.dll
+Processing StudioLE.Conversion
+warning: InvalidCref: Invalid cref value "!:TResult" found in XML documentation comment .
+Creating output...
+
+
+Build succeeded with warning.
+
+    1 warning(s)
+    0 error(s)
