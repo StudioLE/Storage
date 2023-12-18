@@ -9,8 +9,14 @@ public class CacheLogger : ILogger
 {
     private readonly string _categoryName;
     private readonly Action<LogEntry> _onLog;
+    private readonly List<LogEntry> _logs = new();
 
-    internal CacheLogger(string categoryName, Action<LogEntry> onLog)
+    /// <summary>
+    /// The logs.
+    /// </summary>
+    public IReadOnlyCollection<LogEntry> Logs => _logs.AsReadOnly();
+
+    public CacheLogger(string categoryName, Action<LogEntry> onLog)
     {
         _categoryName = categoryName;
         _onLog = onLog;
@@ -19,7 +25,7 @@ public class CacheLogger : ILogger
     /// <inheritdoc />
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
-        _onLog.Invoke(new()
+        LogEntry log = new()
         {
             Category = _categoryName,
             LogLevel = logLevel,
@@ -27,7 +33,9 @@ public class CacheLogger : ILogger
             State = typeof(TState),
             Exception = exception,
             Message = formatter.Invoke(state, exception)
-        });
+        };
+        _logs.Add(log);
+        _onLog.Invoke(log);
     }
 
     /// <inheritdoc />
