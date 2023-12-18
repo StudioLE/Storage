@@ -15,10 +15,10 @@ public static class AnsiHelpers
     }
 
     /// <summary>
-    /// Get the ANSI sequence to set the foreground to <see cref="color"/>.
+    /// Get the ANSI sequence to set the foreground to <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
-    /// <returns>The ANSI escape sequence</returns>
+    /// <returns>The ANSI escape sequence.</returns>
     public static string GetForegroundSequence(AnsiColor color)
     {
         int code = (int)color;
@@ -26,10 +26,10 @@ public static class AnsiHelpers
     }
 
     /// <summary>
-    /// Get the ANSI sequence to set the foreground to bright <see cref="color"/>.
+    /// Get the ANSI sequence to set the foreground to bright <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
-    /// <returns>The ANSI escape sequence</returns>
+    /// <returns>The ANSI escape sequence.</returns>
     public static string GetBrightForegroundSequence(AnsiColor color)
     {
         int code = (int)color;
@@ -37,10 +37,10 @@ public static class AnsiHelpers
     }
 
     /// <summary>
-    /// Get the ANSI sequence to set the background to <see cref="color"/>.
+    /// Get the ANSI sequence to set the background to <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
-    /// <returns>The ANSI escape sequence</returns>
+    /// <returns>The ANSI escape sequence.</returns>
     public static string GetBackgroundSequence(AnsiColor color)
     {
         int code = (int)color;
@@ -48,10 +48,10 @@ public static class AnsiHelpers
     }
 
     /// <summary>
-    /// Get the ANSI sequence to set the background to bright <see cref="color"/>.
+    /// Get the ANSI sequence to set the background to bright <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
-    /// <returns>The ANSI escape sequence</returns>
+    /// <returns>The ANSI escape sequence.</returns>
     public static string GetBrightBackgroundSequence(AnsiColor color)
     {
         int code = (int)color;
@@ -59,10 +59,10 @@ public static class AnsiHelpers
     }
 
     /// <summary>
-    /// Get the ANSI sequence to set <see cref="style"/>.
+    /// Get the ANSI sequence to set <paramref name="style"/>.
     /// </summary>
     /// <param name="style">The style to use.</param>
-    /// <returns>The ANSI escape sequence</returns>
+    /// <returns>The ANSI escape sequence.</returns>
     public static string GetStyleSequence(AnsiStyle style)
     {
         int code = (int)style;

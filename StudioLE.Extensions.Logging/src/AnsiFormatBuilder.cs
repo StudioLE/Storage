@@ -18,7 +18,7 @@ public class AnsiFormatBuilder
     }
 
     /// <summary>
-    /// Set the foreground to <see cref="color"/>.
+    /// Set the foreground to <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
     /// <returns>The builder.</returns>
@@ -29,7 +29,7 @@ public class AnsiFormatBuilder
     }
 
     /// <summary>
-    /// Set the foreground to bright <see cref="color"/>.
+    /// Set the foreground to bright <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
     /// <returns>The builder.</returns>
@@ -40,7 +40,7 @@ public class AnsiFormatBuilder
     }
 
     /// <summary>
-    /// Set the background to <see cref="color"/>.
+    /// Set the background to <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
     /// <returns>The builder.</returns>
@@ -51,7 +51,7 @@ public class AnsiFormatBuilder
     }
 
     /// <summary>
-    /// Set the foreground to <see cref="color"/>.
+    /// Set the foreground to <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color to use.</param>
     /// <returns>The builder.</returns>
@@ -62,13 +62,13 @@ public class AnsiFormatBuilder
     }
 
     /// <summary>
-    /// Set the foreground color.
+    /// Set the style to <paramref name="style"/>.
     /// </summary>
-    /// <param name="color">The color to use.</param>
+    /// <param name="style">The color to use.</param>
     /// <returns>The builder.</returns>
-    public AnsiFormatBuilder WithStyle(AnsiStyle color)
+    public AnsiFormatBuilder WithStyle(AnsiStyle style)
     {
-        _str.Append(AnsiHelpers.GetStyleSequence(color));
+        _str.Append(AnsiHelpers.GetStyleSequence(style));
         return this;
     }
 
