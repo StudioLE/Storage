@@ -6,5 +6,10 @@ namespace StudioLE.Patterns;
 /// </summary>
 public interface IStrategy<in TSource, out TResult>
 {
+    /// <summary>
+    /// Get <typeparamref name="TResult"/> from <typeparamref name="TSource"/>.
+    /// </summary>
+    /// <param name="source">The source to use.</param>
+    /// <returns>The resultant <typeparamref name="TResult"/>.</returns>
     public TResult Execute(TSource source);
 }

@@ -16,6 +16,9 @@ public class CacheLogger : ILogger
     /// </summary>
     public IReadOnlyCollection<LogEntry> Logs => _logs.AsReadOnly();
 
+    /// <summary>
+    /// Create an instance of <see cref="CacheLogger"/>.
+    /// </summary>
     public CacheLogger(string categoryName, Action<LogEntry> onLog)
     {
         _categoryName = categoryName;

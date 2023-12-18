@@ -1,5 +1,8 @@
 namespace StudioLE.Results;
 
+/// <summary>
+/// Methods to help with <see cref="IResult"/> and <see cref="IResult{T}"/>.
+/// </summary>
 public static class ResultHelpers
 {
     /// <summary>

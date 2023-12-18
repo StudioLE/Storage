@@ -12,7 +12,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +36,7 @@
     <When Condition="'$(OutputType)' == 'Library' AND $(MSBuildProjectName.EndsWith('.Tests'))">
       <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <NoWarn>CS1591</NoWarn>
       </PropertyGroup>
     </When>
   </Choose>

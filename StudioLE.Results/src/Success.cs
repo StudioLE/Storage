@@ -19,6 +19,9 @@ public class Success : IResult
 /// </summary>
 public class Success<T> : IResult<T>
 {
+    /// <summary>
+    /// The value.
+    /// </summary>
     public T Value { get; }
 
     /// <inheritdoc/>

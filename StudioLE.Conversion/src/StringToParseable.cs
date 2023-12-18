@@ -8,6 +8,9 @@ public class StringToParseable<TStruct> : IConverter<string, TStruct?> where TSt
 {
     private readonly IFormatProvider? _formatProvider;
 
+    /// <summary>
+    /// Create an instance of <see cref="StringToParseable{TStruct}"/>.
+    /// </summary>
     public StringToParseable(IFormatProvider? formatProvider)
     {
         _formatProvider = formatProvider;

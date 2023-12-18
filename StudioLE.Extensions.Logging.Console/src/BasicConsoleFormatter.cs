@@ -11,10 +11,16 @@ namespace StudioLE.Extensions.Logging.Console;
 /// <seealso href="https://learn.microsoft.com/en-us/dotnet/core/extensions/console-log-formatter#implement-a-custom-formatter"/>
 public sealed class BasicConsoleFormatter : ConsoleFormatter, IDisposable
 {
+    /// <summary>
+    /// The name of the formatter.
+    /// </summary>
     public const string FormatterName = "basic";
     private readonly IDisposable? _optionsReloadToken;
     private BasicConsoleFormatterOptions _formatterOptions;
 
+    /// <summary>
+    /// Create an instance of <see cref="BasicConsoleFormatter"/>.
+    /// </summary>
     public BasicConsoleFormatter(IOptionsMonitor<BasicConsoleFormatterOptions> options) : base(FormatterName)
     {
         (_optionsReloadToken, _formatterOptions) = (options.OnChange(ReloadLoggerOptions), options.CurrentValue);
@@ -25,6 +31,7 @@ public sealed class BasicConsoleFormatter : ConsoleFormatter, IDisposable
         _formatterOptions = options;
     }
 
+    /// <inheritdoc/>
     public override void Write<TState>(in LogEntry<TState> logEntry, IExternalScopeProvider? scopeProvider, TextWriter textWriter)
     {
         string? message =
@@ -44,6 +51,7 @@ public sealed class BasicConsoleFormatter : ConsoleFormatter, IDisposable
         textWriter.WriteLine();
     }
 
+    /// <inheritdoc/>
     public void Dispose()
     {
         _optionsReloadToken?.Dispose();

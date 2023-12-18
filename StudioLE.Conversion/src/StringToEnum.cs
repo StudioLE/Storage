@@ -8,6 +8,9 @@ public class StringToEnum : IConverter<string, Enum?>
 {
     private readonly Type _enumType;
 
+    /// <summary>
+    /// Create an instance of <see cref="StringToEnum"/>.
+    /// </summary>
     public StringToEnum(Type enumType)
     {
         _enumType = enumType;
