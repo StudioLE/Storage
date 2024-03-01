@@ -1,0 +1,23 @@
+System.String StringValue: 
+System.Int32 StringValue.Length: 0
+System.Int32 IntegerValue: 0
+System.Double DoubleValue: 0
+System.Boolean BooleanValue: False
+System.String Arg1Value: 
+System.Int32 Arg1Value.Length: 0
+StudioLE.Serialization.Tests.Resources.ExampleNestedClass Nested: StudioLE.Serialization.Tests.Resources.ExampleNestedClass
+System.String Nested.StringValue: 
+System.Int32 Nested.StringValue.Length: 0
+System.Int32 Nested.IntegerValue: 0
+System.Double Nested.DoubleValue: 0
+System.Boolean Nested.BooleanValue: False
+StudioLE.Serialization.Tests.Resources.ExampleRecordStruct RecordStruct: ExampleRecordStruct { RecordStructStringValue = , RecordStructArgValue = , NestedRecordStruct = ExampleNestedRecordStruct { IntegerValue = 9 } }
+System.String RecordStruct.RecordStructStringValue: 
+System.Int32 RecordStruct.RecordStructStringValue.Length: 0
+System.String RecordStruct.RecordStructArgValue: 
+System.Int32 RecordStruct.RecordStructArgValue.Length: 0
+StudioLE.Serialization.Tests.Resources.ExampleNestedRecordStruct RecordStruct.NestedRecordStruct: ExampleNestedRecordStruct { IntegerValue = 9 }
+System.Int32 RecordStruct.NestedRecordStruct.IntegerValue: 9
+StudioLE.Serialization.Tests.Resources.ExampleRecordStructWithStringConstructor RecordStructByConstructor: ExampleRecordStructWithStringConstructor { Value =  }
+System.String RecordStructByConstructor.Value: 
+System.Int32 RecordStructByConstructor.Value.Length: 

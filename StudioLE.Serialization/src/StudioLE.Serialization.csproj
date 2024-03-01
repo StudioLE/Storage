@@ -1,14 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../Global.props"/>
+
   <PropertyGroup>
     <Description>Abstract interfaces to declare a standardized approach to serialization is implemented.</Description>
+    <TargetFramework/>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Serialization.Abstractions\src\StudioLE.Serialization.Abstractions.csproj" />
   </ItemGroup>
 
-  <!-- Use consistent properties across all projects -->
-  <Import Project="../../Global.props"/>
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
 
 </Project>

@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.Logging
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Extensions.Logging.Cache.Tests", "StudioLE.Extensions.Logging.Cache\tests\StudioLE.Extensions.Logging.Cache.Tests.csproj", "{E95825A5-108F-41E7-B18B-31BBAF9FFD63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudioLE.Serialization.Tests", "StudioLE.Serialization\tests\StudioLE.Serialization.Tests.csproj", "{4B3E6EF2-8B45-482F-ACF0-7F33FA1FCA0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,6 +146,10 @@ Global
 		{E95825A5-108F-41E7-B18B-31BBAF9FFD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E95825A5-108F-41E7-B18B-31BBAF9FFD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E95825A5-108F-41E7-B18B-31BBAF9FFD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B3E6EF2-8B45-482F-ACF0-7F33FA1FCA0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B3E6EF2-8B45-482F-ACF0-7F33FA1FCA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B3E6EF2-8B45-482F-ACF0-7F33FA1FCA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B3E6EF2-8B45-482F-ACF0-7F33FA1FCA0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7B5D8462-BD2C-4959-B2FF-37192D14E1F4} = {3CDEEDF8-1123-4B0B-8BE4-E647F48D25D6}
@@ -166,5 +172,6 @@ Global
 		{CEEEBDEA-9A27-400A-AAA9-FE63E9F78E87} = {DA85CB02-853D-4381-B6A1-B690FD488F63}
 		{C3F4B115-5D54-4E6D-B9C8-ABD84233A34A} = {DA85CB02-853D-4381-B6A1-B690FD488F63}
 		{E95825A5-108F-41E7-B18B-31BBAF9FFD63} = {DA85CB02-853D-4381-B6A1-B690FD488F63}
+		{4B3E6EF2-8B45-482F-ACF0-7F33FA1FCA0A} = {9DD28AA2-8EED-4F0F-BCC2-D3CA5F8A9AF5}
 	EndGlobalSection
 EndGlobal
