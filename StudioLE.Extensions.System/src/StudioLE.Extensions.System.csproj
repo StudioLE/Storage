@@ -11,4 +11,8 @@
     <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
   </PropertyGroup>
 
+  <ItemGroup>
+     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.1" Condition="'$(CI)' == 'true'" />
+  </ItemGroup>
+
 </Project>
