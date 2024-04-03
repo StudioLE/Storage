@@ -13,6 +13,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.2" Condition="'$(CI)' == 'true'" />
+     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.3" Condition="'$(CI)' == 'true'" />
   </ItemGroup>
 </Project>

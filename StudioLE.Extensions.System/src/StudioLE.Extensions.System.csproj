@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.2" Condition="'$(CI)' == 'true'" />
+     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.3" Condition="'$(CI)' == 'true'" />
   </ItemGroup>
 
 </Project>

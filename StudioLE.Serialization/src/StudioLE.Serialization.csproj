@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.2" Condition="'$(CI)' == 'true'" />
+     <PackageReference Include="Surveyor.BuildVersioning" Version="0.2.3" Condition="'$(CI)' == 'true'" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
