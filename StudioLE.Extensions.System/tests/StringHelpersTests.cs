@@ -16,7 +16,7 @@ internal sealed class StringHelpersTests
         string lfReplaced = lf.ReplaceWindowsLineEndings();
 
         // Assert
-        Assert.True(crlfReplaced.Equals(lfReplaced));
-        Assert.False(crlf.Equals(lf));
+        Assert.That(crlfReplaced.Equals(lfReplaced));
+        Assert.That(crlf.Equals(lf), Is.False);
     }
 }

@@ -6,15 +6,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.DataAnnotations.Validation" Version="3.2.0-rc1.20223.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0"/>
-    <PackageReference Include="NUnit" Version="4.0.1"/>
+    <PackageReference Include="NUnit" Version="4.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
-    <PackageReference Include="StudioLE.Diagnostics.NUnit" Version="0.8.0"/>
-    <PackageReference Include="StudioLE.Extensions.Logging.Cache" Version="0.10.0"/>
-    <PackageReference Include="StudioLE.Verify.Yaml" Version="0.8.0"/>
+    <PackageReference Include="StudioLE.Diagnostics.NUnit" Version="0.9.0" />
+    <PackageReference Include="StudioLE.Verify.Yaml" Version="0.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\src\StudioLE.Serialization.csproj"/>
+    <ProjectReference Include="..\..\StudioLE.Extensions.Logging.Cache\src\StudioLE.Extensions.Logging.Cache.csproj"/>
   </ItemGroup>
 
 </Project>
