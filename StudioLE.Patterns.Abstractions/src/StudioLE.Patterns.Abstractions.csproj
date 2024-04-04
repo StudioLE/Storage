@@ -5,10 +5,6 @@
     <RootNamespace>StudioLE.Patterns</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.3.0" PrivateAssets="All" Condition="'$(CI)' == 'true'" />
-  </ItemGroup>
-
   <!-- Use consistent properties across all projects -->
   <Import Project="../../Global.props"/>
 

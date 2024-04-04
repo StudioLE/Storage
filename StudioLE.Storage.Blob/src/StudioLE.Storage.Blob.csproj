@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.3.0" PrivateAssets="All" Condition="'$(CI)' == 'true'" />
   </ItemGroup>
 
   <ItemGroup>

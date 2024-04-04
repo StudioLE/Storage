@@ -15,8 +15,4 @@
     <ProjectReference Include="..\..\StudioLE.Patterns.Abstractions\src\StudioLE.Patterns.Abstractions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.3.0" PrivateAssets="All" Condition="'$(CI)' == 'true'" />
-  </ItemGroup>
-
 </Project>

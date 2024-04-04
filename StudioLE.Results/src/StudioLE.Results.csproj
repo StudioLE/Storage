@@ -4,10 +4,6 @@
     <Description>A basic implementation of a railway oriented programming pattern with Success and Failure paths for a return value. As intriguing as this approach is it goes against the conventions of .NET. A better approach is to return null on failure and pass any warnings or errors via an ILogger.</Description>
   </PropertyGroup>
 
-  <ItemGroup>
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.3.0" PrivateAssets="All" Condition="'$(CI)' == 'true'" />
-  </ItemGroup>
-
   <!-- Use consistent properties across all projects -->
   <Import Project="../../Global.props"/>
 
