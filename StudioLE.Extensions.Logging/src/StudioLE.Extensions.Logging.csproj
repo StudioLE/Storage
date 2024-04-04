@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-     <PackageReference Include="Surveyor.BuildVersioning" Version="0.3.0-alpha.2" PrivateAssets="All" Condition="'$(CI)' == 'true'" />
+     <PackageReference Include="Surveyor.BuildVersioning" Version="0.3.0" PrivateAssets="All" Condition="'$(CI)' == 'true'" />
   </ItemGroup>
 
   <!-- Use consistent properties across all projects -->
