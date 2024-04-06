@@ -1,14 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Generic extension and helper methods for the System namespace.</Description>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+    <Description>A library of helper methods and extensions for primitives and the `System` namespace.</Description>
   </PropertyGroup>
 
   <!-- Use consistent properties across all projects -->
   <Import Project="../../Global.props"/>
-
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
-  </PropertyGroup>
 
 </Project>

@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>File storage implementations.</Description>
+    <Description>A library providing a standardized approach for writing files to storage. Includes concrete implementations for storing files to the local file system.</Description>
   </PropertyGroup>
 
   <!-- Use consistent properties across all projects -->
-  <Import Project="..\..\Global.props" />
+  <Import Project="../../Global.props"/>
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Storage.Abstractions\src\StudioLE.Storage.Abstractions.csproj" />

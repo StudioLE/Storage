@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- Use consistent properties across all projects -->
-  <Import Project="../../Global.props"/>
-
   <PropertyGroup>
-    <Description>Abstract interfaces to declare a standardized approach to serialization is implemented.</Description>
-    <TargetFramework/>
+    <Description>A library providing a standardized approach to parsing and serialization via ISerializer, IDeserializer, and IParser abstractions. Also includes logic to deeply interrogate the composition and properties of any object as a composite ObjectTree.</Description>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
+
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../Global.props"/>
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Serialization.Abstractions\src\StudioLE.Serialization.Abstractions.csproj"/>

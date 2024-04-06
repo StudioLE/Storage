@@ -4,11 +4,11 @@
     <Description>An ILogger implementation that stores logs in a collection to be retrieved later. Its primary use case is to validate logging in tests.</Description>
   </PropertyGroup>
 
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../Global.props"/>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
-
-  <!-- Use consistent properties across all projects -->
-  <Import Project="../../Global.props"/>
 
 </Project>

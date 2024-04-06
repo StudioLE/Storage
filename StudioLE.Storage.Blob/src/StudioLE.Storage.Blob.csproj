@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Blob file storage implementation.</Description>
+    <Description>A concrete implementation of `StudioLE.Storage` for writing to Azure Blob Storage.</Description>
   </PropertyGroup>
 
   <!-- Use consistent properties across all projects -->
-  <Import Project="..\..\Global.props" />
+  <Import Project="../../Global.props"/>
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />

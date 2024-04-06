@@ -1,8 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Implements BasicConsoleFormatter which formats log without scope but in color.</Description>
+    <Description>An ILogger implementation that formats logs in color but without the multiline scope of the default ConsoleLogger.</Description>
   </PropertyGroup>
+
+  <!-- Use consistent properties across all projects -->
+  <Import Project="../../Global.props"/>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
@@ -11,8 +14,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Extensions.Logging\src\StudioLE.Extensions.Logging.csproj" />
   </ItemGroup>
-
-  <!-- Use consistent properties across all projects -->
-  <Import Project="../../Global.props"/>
 
 </Project>

@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <Authors>StudioLE</Authors>
-    <Copyright>Copyright © Laurence Elsdon 2023</Copyright>
+    <Copyright>Copyright © Laurence Elsdon 2023-2024</Copyright>
     <PackageProjectUrl>https://github.com/StudioLE/Core</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>helpers utilities</PackageTags>
+    <PackageTags>dotnet csharp system extensions helpers utilities primitives</PackageTags>
+    <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -14,9 +15,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="../../README.md" Pack="true" PackagePath="\" Visible="false"/>
-  </ItemGroup>
+  <PropertyGroup>
+    <RepositoryReadmeFilePath>../../README.md</RepositoryReadmeFilePath>
+    <ProjectReadmeFilePath>README.md</ProjectReadmeFilePath>
+    <PackageReadmeFile Condition="Exists('$(RepositoryReadmeFilePath)')">$(RepositoryReadmeFilePath)</PackageReadmeFile>
+    <PackageReadmeFile Condition="Exists('$(ProjectReadmeFilePath)')">$(ProjectReadmeFilePath)</PackageReadmeFile>
+  </PropertyGroup>
 
   <PropertyGroup>
     <IsExecutable>false</IsExecutable>
@@ -28,19 +32,18 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsExecutable)">
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFramework Condition="'$(TargetFramework)' == '' AND '$(TargetFrameworks)' == ''">net8.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsTestLibrary)">
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFramework Condition="'$(TargetFramework)' == '' AND '$(TargetFrameworks)' == ''">net8.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsLibrary)">
-    <TargetFrameworks Condition="'$(TargetFramework)' == ''">netstandard2.0</TargetFrameworks>
+    <TargetFramework Condition="'$(TargetFramework)' == '' AND '$(TargetFrameworks)' == ''">netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Condition="$(IsExecutable) OR $(IsLibrary)">
@@ -49,6 +52,11 @@
 
   <ItemGroup Condition="$(IsLibrary)">
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(IsLibrary) OR $(IsExecutable)">
+    <Content Condition="'$(PackageReadmeFile)' == '$(ProjectReadmeFilePath)'" Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" />
+    <None Condition="'$(PackageReadmeFile)' == '$(RepositoryReadmeFilePath)'" Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" Visible="false" />
   </ItemGroup>
 
 </Project>

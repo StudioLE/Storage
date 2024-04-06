@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Abstract interfaces to declare a standardized approach to serialization is implemented.</Description>
+    <Description>Abstractions of a standardized approach to parsing and serialization via ISerializer, IDeserializer, and IParser abstractions.</Description>
     <RootNamespace>StudioLE.Serialization</RootNamespace>
   </PropertyGroup>
 
