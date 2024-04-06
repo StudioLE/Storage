@@ -56,7 +56,7 @@
 
   <ItemGroup Condition="$(IsLibrary) OR $(IsExecutable)">
     <Content Condition="'$(PackageReadmeFile)' == '$(ProjectReadmeFilePath)'" Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" />
-    <None Condition="'$(PackageReadmeFile)' == '$(RepositoryReadmeFilePath)'" Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" Visible="false" />
+    <None Condition="'$(PackageReadmeFile)' == '$(RepositoryReadmeFilePath)'" Include="$(RepositoryReadmeFilePath)" Pack="true" PackagePath="/" Visible="false" />
   </ItemGroup>
 
 </Project>
