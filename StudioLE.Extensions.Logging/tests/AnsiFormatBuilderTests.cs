@@ -54,10 +54,10 @@ internal sealed class AnsiFormatBuilderTests
         // Act
         string output = builder.Build();
 
-        #if DEBUG
+#if DEBUG
         // Preview
         Console.WriteLine(output + "Hello, world!");
-        #endif
+#endif
 
         // Assert
         Assert.That(output, Is.Not.Empty);

@@ -30,10 +30,10 @@ internal sealed class AnsiHelpersTests
         // Act
         string output = AnsiHelpers.ReplaceEscapeSequences(input);
 
-        #if DEBUG
+#if DEBUG
         // Preview
         Console.WriteLine(output);
-        #endif
+#endif
 
         // Assert
         Assert.That(output, Is.Not.Empty);

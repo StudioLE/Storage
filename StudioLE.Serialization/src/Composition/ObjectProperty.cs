@@ -80,7 +80,7 @@ public class ObjectProperty : IObjectComponent
     public object? GetValue()
     {
         object? parentValue = Parent.GetValue();
-        if(parentValue is null)
+        if (parentValue is null)
             return null;
         return Property.GetValue(parentValue);
     }

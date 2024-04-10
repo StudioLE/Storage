@@ -10,7 +10,7 @@ internal sealed class CacheLoggerTests
     {
         // Arrange
         const string message = "Hello, world!";
-        CacheLogger logger = new("ExampleContext", _ => {});
+        CacheLogger logger = new("ExampleContext", _ => { });
 
         // Act
         logger.Log(logLevel, message);

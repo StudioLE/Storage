@@ -27,17 +27,11 @@ internal sealed class ConsoleLoggerTests
         // Arrange
         ILoggerFactory factory = LoggerFactory.Create(builder => builder
             .SetMinimumLevel(LogLevel.Trace)
-            .AddSimpleConsole(options =>
-            {
-                options.ColorBehavior = LoggerColorBehavior.Enabled;
-            }));
+            .AddSimpleConsole(options => options.ColorBehavior = LoggerColorBehavior.Enabled));
         ILogger<ExampleContext> colorLogger = factory.CreateLogger<ExampleContext>();
         factory = LoggerFactory.Create(builder => builder
             .SetMinimumLevel(LogLevel.Trace)
-            .AddSimpleConsole(options =>
-            {
-                options.ColorBehavior = LoggerColorBehavior.Disabled;
-            }));
+            .AddSimpleConsole(options => options.ColorBehavior = LoggerColorBehavior.Disabled));
         ILogger<ExampleContext> withoutColorLogger = factory.CreateLogger<ExampleContext>();
         factory = LoggerFactory.Create(builder => builder
             .SetMinimumLevel(LogLevel.Trace)
@@ -70,10 +64,7 @@ internal sealed class ConsoleLoggerTests
         ILogger<ExampleContext> colorLogger = factory.CreateLogger<ExampleContext>();
         factory = LoggerFactory.Create(builder => builder
             .SetMinimumLevel(LogLevel.Trace)
-            .AddBasicConsole(options =>
-            {
-                options.DisableColors = true;
-            }));
+            .AddBasicConsole(options => options.DisableColors = true));
         ILogger<ExampleContext> withoutColorLogger = factory.CreateLogger<ExampleContext>();
 
         // Act
