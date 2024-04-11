@@ -28,5 +28,5 @@ public class ExampleClass
     public ExampleRecordStruct RecordStruct { get; set; } = new();
 
     [ValidateComplexType]
-    public ExampleRecordStructWithStringConstructor RecordStructByConstructor { get; set; } = new();
+    public ExampleStructWithStringConstructor StructByConstructor { get; set; } = new();
 }

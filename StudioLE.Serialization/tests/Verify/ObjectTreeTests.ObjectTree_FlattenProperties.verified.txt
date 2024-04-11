@@ -18,6 +18,4 @@ RecordStruct.RecordStructArgValue: System.String
 RecordStruct.RecordStructArgValue.Length: System.Int32
 RecordStruct.NestedRecordStruct: StudioLE.Serialization.Tests.Resources.ExampleNestedRecordStruct
 RecordStruct.NestedRecordStruct.IntegerValue: System.Int32
-RecordStructByConstructor: StudioLE.Serialization.Tests.Resources.ExampleRecordStructWithStringConstructor
-RecordStructByConstructor.Value: System.String
-RecordStructByConstructor.Value.Length: System.Int32
+StructByConstructor: StudioLE.Serialization.Tests.Resources.ExampleStructWithStringConstructor

@@ -58,16 +58,31 @@ internal sealed class ParserTests
     public void Parser_Parse_StringConstructor()
     {
         // Arrange
-        const string source = "Hello, World!";
-        Type target = typeof(ExampleRecordStructWithStringConstructor);
-        ExampleRecordStructWithStringConstructor expected = new(source);
+        const int source = 12345;
+        Type target = typeof(ExampleStructWithStringConstructor);
+        ExampleStructWithStringConstructor expected = new(source.ToString());
 
         // Act
-        object? parsed = _parser.Parse(source, target);
+        object? parsed = _parser.Parse(source.ToString(), target);
 
         // Assert
         Assert.That(parsed, Is.EqualTo(expected));
         Assert.That(parsed, Is.TypeOf(target));
         Assert.That(parsed, Is.Not.Null);
+        if(parsed is ExampleStructWithStringConstructor actual)
+            Assert.That(actual.GetValue(), Is.EqualTo(source));
+    }
+
+    [Test]
+    public void Parser_CanParse_StringConstructor()
+    {
+        // Arrange
+        Type target = typeof(ExampleStructWithStringConstructor);
+
+        // Act
+        bool isParseable = _parser.CanParse(target);
+
+        // Assert
+        Assert.That(isParseable);
     }
 }

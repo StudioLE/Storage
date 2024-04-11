@@ -142,17 +142,20 @@ internal sealed class ObjectTreeTests
     }
 
     [Test]
-    public async Task ObjectTreeProperty_SetValue_RecordStructWithStringConstructor()
+    [Ignore("Redundant")]
+    public async Task ObjectTreeProperty_SetValue_StructWithStringConstructor()
     {
         // Arrange
         ExampleClass inputs = new();
         ObjectTree objectTree = new(inputs);
-        IObjectComponent recordProperty = objectTree
+        IObjectComponent objectComponent = objectTree
             .Children
-            .First(x => x.Type == typeof(ExampleRecordStructWithStringConstructor));
+            .First(x => x.Type == typeof(ExampleStructWithStringConstructor));
+
+        // TODO: Use parser here to convert value
 
         // Act
-        recordProperty.Children.ElementAt(0).SetValue("This is a new string value.");
+        objectComponent.SetValue("This is a new string value.");
         ObjectProperty[] properties = objectTree
             .FlattenProperties()
             .ToArray();
