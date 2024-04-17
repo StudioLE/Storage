@@ -3,6 +3,7 @@ using NUnit.Framework;
 using StudioLE.Extensions.Logging.Cache;
 using StudioLE.Extensions.System;
 using StudioLE.Storage.Blob;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace StudioLE.Storage.Tests;
 
