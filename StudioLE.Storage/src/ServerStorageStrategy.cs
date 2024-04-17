@@ -5,6 +5,7 @@ namespace StudioLE.Storage;
 /// <summary>
 /// A strategy to store files in the local file system and serve them from Cascade.Server
 /// </summary>
+[Obsolete("Replaced by IFileWriter instead.")]
 public class ServerStorageStrategy : IStorageStrategy
 {
     private readonly string _directory = Path.GetTempPath();

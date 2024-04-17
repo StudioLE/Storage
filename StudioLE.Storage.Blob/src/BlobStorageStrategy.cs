@@ -9,6 +9,7 @@ namespace StudioLE.Storage.Blob;
 /// <summary>
 /// A strategy to store files in Azure Blob Storage.
 /// </summary>
+[Obsolete("Use IFileWriter instead.")]
 public class BlobStorageStrategy : IStorageStrategy
 {
     private const string BlobConnectionString = "UseDevelopmentStorage=true";

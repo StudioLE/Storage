@@ -1,60 +1,12 @@
-## Contents
-
-### [StudioLE.Conversion](StudioLE.Conversion/src)
-
-A library providing standardized methods to convert between different types.
-
-### [StudioLE.Core](StudioLE.Core/src)
-
-This package is now OBSOLETE. The previous logic has been moved to separate packages.
-
-### [StudioLE.Extensions.Logging](StudioLE.Extensions.Logging/src)
-
-A library of methods to help with System.Console and Microsoft.Extensions.Logging. Including handling of ANSI colors and escape codes.
-
-### [StudioLE.Extensions.Logging.Cache](StudioLE.Extensions.Logging.Cache/src)
-
-An ILogger implementation that stores logs in a collection to be retrieved later. Its primary use case is to validate logging in tests.
-
-### [StudioLE.Extensions.Logging.Console](StudioLE.Extensions.Logging.Console/src)
-
-An ILogger implementation that formats logs in color but without the multiline scope of the default ConsoleLogger.
-
-### [StudioLE.Extensions.System](StudioLE.Extensions.System/src)
-
-A library of helper methods and extensions for primitives and the `System` namespace.
-
-### [StudioLE.Patterns.Abstractions](StudioLE.Patterns.Abstractions/src)
-
-Abstract interfaces to declare a conventional design pattern is implemented.
-
-### [StudioLE.Results](StudioLE.Results/src)
-
-A basic implementation of a railway oriented programming pattern with Success and Failure paths for a return value. As intriguing as this approach is it goes against the conventions of .NET. A better approach is to return null on failure and pass any warnings or errors via an ILogger.
-
-### [StudioLE.Serialization](StudioLE.Serialization/src)
-
-A library providing a standardized approach to parsing and serialization via ISerializer, IDeserializer, and IParser abstractions. Also includes logic to deeply interrogate the composition and properties of any object as a composite ObjectTree.
-
-### [StudioLE.Serialization.Abstractions](StudioLE.Serialization.Abstractions/src)
-
-Abstractions of a standardized approach to parsing and serialization via ISerializer, IDeserializer, and IParser abstractions.
-
-### [StudioLE.Serialization.Yaml](StudioLE.Serialization.Yaml/src)
-
-A concrete implementation of `StudioLE.Serialization` for YAML serialization using `YamlDotNet`.
+﻿## Contents
 
 ### [StudioLE.Storage](StudioLE.Storage/src)
 
-A library providing a standardized approach for writing files to storage. Includes concrete implementations for storing files to the local file system.
+A library providing a standardized approach for reading and writing files asynchronously.
 
 ### [StudioLE.Storage.Abstractions](StudioLE.Storage.Abstractions/src)
 
-Abstractions of a standardized approach for writing files to storage.
-
-### [StudioLE.Storage.Blob](StudioLE.Storage.Blob/src)
-
-A concrete implementation of `StudioLE.Storage` for writing to Azure Blob Storage.
+Abstractions of `StudioLE.Storage`, a standardized approach for reading and writing files asynchronously.
 
 ## License
 

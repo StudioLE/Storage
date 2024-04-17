@@ -1,0 +1,65 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using StudioLE.Storage.Paths;
+
+namespace StudioLE.Storage.Files;
+
+/// <summary>
+/// Write a file to the physical file system.
+/// </summary>
+/// <inheritdoc cref="IFileWriter"/>
+public class PhysicalFileWriter : IFileWriter
+{
+    private readonly ILogger<PhysicalFileWriter> _logger;
+    private readonly PhysicalFileWriterOptions _options;
+
+    /// <summary>
+    /// DI constructor for <see cref="PhysicalFileWriter"/>.
+    /// </summary>
+    public PhysicalFileWriter(ILogger<PhysicalFileWriter> logger, IOptions<PhysicalFileWriterOptions> options)
+    {
+        _logger = logger;
+        _options = options.Value;
+    }
+
+    /// <inheritdoc/>
+    public async Task<string?> Write(string path, Stream stream)
+    {
+        if (!Directory.Exists(_options.RootDirectory))
+        {
+            _logger.Log(_options.LogLevel, "Failed to write file. The root directory does not exist.");
+            return null;
+        }
+        if (!_options.AllowSubDirectories && path != Path.GetFileName(path))
+        {
+            _logger.Log(_options.LogLevel, "Failed to write file. Sub directories are not allowed.");
+            return null;
+        }
+        string absolutePath = Path.Combine(_options.RootDirectory, path);
+        absolutePath = Path.GetFullPath(absolutePath);
+        if (!absolutePath.StartsWith(_options.RootDirectory))
+        {
+            _logger.Log(_options.LogLevel, "Failed to write file. The path is outside the root directory.");
+            return null;
+        }
+        if (!_options.AllowOverwrite && File.Exists(absolutePath))
+        {
+            _logger.Log(_options.LogLevel, "Failed to write file. The file already exists.");
+            return null;
+        }
+        try
+        {
+            using FileStream fileStream = new(absolutePath, FileMode.Create, FileAccess.Write);
+            await stream.CopyToAsync(fileStream);
+            stream.Close();
+            stream.Dispose();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Failed to write file.");
+            return null;
+        }
+        string uri = FileUriHelpers.FromAbsolutePath(absolutePath);
+        return uri;
+    }
+}

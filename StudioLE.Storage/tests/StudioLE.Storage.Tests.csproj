@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Use consistent properties across all projects -->
-  <Import Project="../../Global.props"/>
+  <Import Project="..\..\Global.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\src\StudioLE.Storage.csproj" />
@@ -9,14 +9,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="NUnit" Version="4.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="studiole.extensions.logging.cache" Version="0.11.0" />
+    <PackageReference Include="StudioLE.Diagnostics.NUnit" Version="0.10.2" />
+    <PackageReference Include="StudioLE.Extensions.Logging.Cache" Version="0.11.0" />
+    <PackageReference Include="StudioLE.Extensions.System" Version="0.11.0" />
+    <PackageReference Include="StudioLE.Verify" Version="0.10.2" />
   </ItemGroup>
 
 </Project>

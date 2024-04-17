@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Abstractions of a standardized approach for writing files to storage.</Description>
+    <Description>Abstractions of `StudioLE.Storage`, a standardized approach for reading and writing files asynchronously.</Description>
     <RootNamespace>StudioLE.Storage</RootNamespace>
   </PropertyGroup>
 
   <!-- Use consistent properties across all projects -->
-  <Import Project="../../Global.props"/>
+  <Import Project="..\..\Global.props" />
+
 </Project>
