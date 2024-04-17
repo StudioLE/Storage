@@ -10,7 +10,6 @@ namespace StudioLE.Storage.Files;
 /// </remarks>
 /// <seealso href="https://refactoring.guru/design-patterns/strategy"/>
 /// <seealso href="https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection"/>
-[Obsolete("Use IFileWriter instead.")]
 public interface IFileWriter
 {
     /// <summary>
