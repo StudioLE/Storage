@@ -1,5 +1,6 @@
 namespace StudioLE.Storage.Files;
 
+/// <inheritdoc cref="IContainerInfo"/>
 public readonly record struct ContainerInfo : IContainerInfo
 {
     /// <inheritdoc/>
