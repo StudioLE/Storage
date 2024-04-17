@@ -9,10 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+    <PackageReference Include="studiole.extensions.system" Version="0.11.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Storage\src\StudioLE.Storage.csproj" />
-    <ProjectReference Include="..\..\StudioLE.Extensions.System\src\StudioLE.Extensions.System.csproj" />
   </ItemGroup>
 </Project>
