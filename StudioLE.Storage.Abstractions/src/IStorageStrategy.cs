@@ -3,6 +3,7 @@ namespace StudioLE.Storage;
 /// <summary>
 /// A <see href="https://refactoring.guru/design-patterns/strategy">strategy pattern</see> to store files.
 /// </summary>
+[Obsolete("Replaced by IFileWriter")]
 public interface IStorageStrategy
 {
     /// <summary>

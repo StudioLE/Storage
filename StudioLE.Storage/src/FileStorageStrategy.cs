@@ -6,7 +6,7 @@ namespace StudioLE.Storage;
 /// A strategy to store files in the local file system.
 /// using a <see href="https://refactoring.guru/design-patterns/strategy">strategy pattern</see>.
 /// </summary>
-[Obsolete("Use IFileWriter instead.")]
+[Obsolete("Replaced by PhysicalFileWriter")]
 public class FileStorageStrategy : IStorageStrategy
 {
     private readonly string _directory = Path.GetTempPath();
