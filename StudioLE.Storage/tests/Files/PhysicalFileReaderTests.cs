@@ -42,7 +42,7 @@ internal sealed class PhysicalFileReaderTests
             throw new("Stream is null");
         StreamReader streamReader = new(stream);
         string content = await streamReader.ReadToEndAsync();
-        Assert.That(content, Is.EqualTo(ExampleHelpers.FileContent));
+        Assert.That(content, Is.EqualTo(ExampleHelpers.FileContent).Or.EqualTo(ExampleHelpers.FileContentCrLf));
         Assert.That(_cache.Logs.Count, Is.EqualTo(0));
     }
 
