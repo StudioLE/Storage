@@ -11,21 +11,26 @@ namespace StudioLE.Storage.Files;
 public class PhysicalFileWriter : IFileWriter
 {
     private readonly ILogger<PhysicalFileWriter> _logger;
+    private readonly PhysicalFileSystemOptions _systemOptions;
     private readonly PhysicalFileWriterOptions _options;
 
     /// <summary>
     /// DI constructor for <see cref="PhysicalFileWriter"/>.
     /// </summary>
-    public PhysicalFileWriter(ILogger<PhysicalFileWriter> logger, IOptions<PhysicalFileWriterOptions> options)
+    public PhysicalFileWriter(
+        ILogger<PhysicalFileWriter> logger,
+        IOptions<PhysicalFileSystemOptions> systemOptions,
+        IOptions<PhysicalFileWriterOptions> writerOptions)
     {
         _logger = logger;
-        _options = options.Value;
+        _systemOptions = systemOptions.Value;
+        _options = writerOptions.Value;
     }
 
     /// <inheritdoc/>
     public async Task<string?> Write(string path, Stream stream)
     {
-        if (!Directory.Exists(_options.RootDirectory))
+        if (!Directory.Exists(_systemOptions.RootDirectory))
         {
             _logger.Log(_options.LogLevel, "Failed to write file. The root directory does not exist.");
             return null;
@@ -35,9 +40,9 @@ public class PhysicalFileWriter : IFileWriter
             _logger.Log(_options.LogLevel, "Failed to write file. Sub directories are not allowed.");
             return null;
         }
-        string absolutePath = Path.Combine(_options.RootDirectory, path);
+        string absolutePath = Path.Combine(_systemOptions.RootDirectory, path);
         absolutePath = Path.GetFullPath(absolutePath);
-        if (!absolutePath.StartsWith(_options.RootDirectory))
+        if (!absolutePath.StartsWith(_systemOptions.RootDirectory))
         {
             _logger.Log(_options.LogLevel, "Failed to write file. The path is outside the root directory.");
             return null;

@@ -8,11 +8,6 @@ namespace StudioLE.Storage.Files;
 public class PhysicalFileWriterOptions
 {
     /// <summary>
-    /// The directory to write files to.
-    /// </summary>
-    public string RootDirectory { get; set; } = Path.GetTempPath();
-
-    /// <summary>
     /// Should the file be overwritten if it already exists?
     /// </summary>
     public bool AllowOverwrite { get; set; } = false;

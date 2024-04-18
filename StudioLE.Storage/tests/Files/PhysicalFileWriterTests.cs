@@ -17,8 +17,12 @@ internal sealed class PhysicalFileWriterTests
         CacheLoggerProvider cache = new();
         LoggerFactory loggerFactory = new(new[] { cache });
         ILogger<PhysicalFileWriter> logger = loggerFactory.CreateLogger<PhysicalFileWriter>();
-        IOptions<PhysicalFileWriterOptions> options = Options.Create(new PhysicalFileWriterOptions());
-        PhysicalFileWriter fileWriter = new (logger, options);
+        PhysicalFileSystemOptions systemOptions = new()
+        {
+            RootDirectory = Path.GetTempPath()
+        };
+        PhysicalFileWriterOptions writerOptions = new();
+        PhysicalFileWriter fileWriter = new(logger, Options.Create(systemOptions), Options.Create(writerOptions));
         MemoryStream stream = new();
         StreamWriter writer = new(stream);
         await writer.WriteAsync("Hello, world.");

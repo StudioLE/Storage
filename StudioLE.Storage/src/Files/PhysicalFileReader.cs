@@ -10,12 +10,12 @@ namespace StudioLE.Storage.Files;
 public class PhysicalFileReader : IFileReader
 {
     private readonly ILogger<PhysicalFileReader> _logger;
-    private readonly PhysicalFileReaderOptions _options;
+    private readonly PhysicalFileSystemOptions _options;
 
     /// <summary>
     /// DI constructor for <see cref="PhysicalFileReader"/>.
     /// </summary>
-    public PhysicalFileReader(ILogger<PhysicalFileReader> logger, IOptions<PhysicalFileReaderOptions> options)
+    public PhysicalFileReader(ILogger<PhysicalFileReader> logger, IOptions<PhysicalFileSystemOptions> options)
     {
         _logger = logger;
         _options = options.Value;

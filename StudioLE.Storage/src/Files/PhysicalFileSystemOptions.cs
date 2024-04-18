@@ -3,14 +3,14 @@ using Microsoft.Extensions.Logging;
 namespace StudioLE.Storage.Files;
 
 /// <summary>
-/// Options for <see cref="PhysicalFileWriter"/>
+/// Options for <see cref="PhysicalFileReader"/> and <see cref="PhysicalFileWriter"/>.
 /// </summary>
-public class PhysicalFileReaderOptions
+public class PhysicalFileSystemOptions
 {
     /// <summary>
-    /// The directory to write files to.
+    /// The directory to read files to.
     /// </summary>
-    public string RootDirectory { get; set; } = Path.GetTempPath();
+    public string RootDirectory { get; set; } = Directory.GetCurrentDirectory();
 
     /// <summary>
     /// The log level to use when logging errors.

@@ -18,7 +18,7 @@ internal sealed class PhysicalFileReaderTests
         LoggerFactory loggerFactory = new(new[] { _cache });
         ILogger<PhysicalFileReader> logger = loggerFactory.CreateLogger<PhysicalFileReader>();
         string directory = Path.GetFullPath("../../../Resources");
-        PhysicalFileReaderOptions options = new()
+        PhysicalFileSystemOptions options = new()
         {
             RootDirectory = directory
         };
