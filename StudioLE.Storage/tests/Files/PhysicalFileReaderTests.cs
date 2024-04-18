@@ -4,6 +4,7 @@ using NUnit.Framework;
 using StudioLE.Extensions.Logging.Cache;
 using StudioLE.Extensions.System;
 using StudioLE.Storage.Files;
+using StudioLE.Storage.Tests.Resources;
 
 namespace StudioLE.Storage.Tests.Files;
 
@@ -17,7 +18,7 @@ internal sealed class PhysicalFileReaderTests
         _cache = new();
         LoggerFactory loggerFactory = new(new[] { _cache });
         ILogger<PhysicalFileReader> logger = loggerFactory.CreateLogger<PhysicalFileReader>();
-        string directory = Path.GetFullPath("../../../Resources");
+        string directory = Path.GetFullPath(ExampleHelpers.DirectoryPath);
         PhysicalFileSystemOptions options = new()
         {
             RootDirectory = directory
@@ -30,7 +31,7 @@ internal sealed class PhysicalFileReaderTests
     {
         // Arrange
         // Act
-        Stream? stream = await _fileReader.Read("Example.txt");
+        Stream? stream = await _fileReader.Read(ExampleHelpers.FileName);
 
         // Preview
         if (_cache.Logs.Count != 0)
@@ -41,7 +42,7 @@ internal sealed class PhysicalFileReaderTests
             throw new("Stream is null");
         StreamReader streamReader = new(stream);
         string content = await streamReader.ReadToEndAsync();
-        Assert.That(content, Is.EqualTo("Hello, world!\n"));
+        Assert.That(content, Is.EqualTo(ExampleHelpers.FileContent));
         Assert.That(_cache.Logs.Count, Is.EqualTo(0));
     }
 
@@ -51,7 +52,7 @@ internal sealed class PhysicalFileReaderTests
     {
         // Arrange
         // Act
-        Stream? stream = await _fileReader.Read("Example2.txt");
+        Stream? stream = await _fileReader.Read("FileDoesNotExist.txt");
 
         // Preview
         if (_cache.Logs.Count != 0)

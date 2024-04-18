@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 namespace StudioLE.Storage.Files;
 
 /// <summary>
-/// Options for <see cref="PhysicalFileReader"/> and <see cref="PhysicalFileWriter"/>.
+/// Options for <see cref="PhysicalFileReader"/>, <see cref="PhysicalFileWriter"/>, and <see cref="PhysicalDirectoryReader"/>.
 /// </summary>
 public class PhysicalFileSystemOptions
 {
