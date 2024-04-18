@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace StudioLE.Storage.Paths;
 
 /// <summary>
@@ -48,8 +50,9 @@ public static class FileUriHelpers
     {
         if(IsFileUri(absolutePath))
             return absolutePath;
-        return "file:///" + absolutePath.Replace('\\', '/');
-
+        if(IsWindowsDrivePath(absolutePath))
+            return "file:///" + absolutePath.Replace('\\', '/');
+        return "file://" + absolutePath.Replace('\\', '/');
     }
 
     /// <summary>
@@ -62,10 +65,26 @@ public static class FileUriHelpers
     /// <returns>
     /// The path, or <see langword="null"/> if not a file URI.
     /// </returns>
-    private static string? GetPath(string uri)
+    public static string? GetPath(string uri)
     {
+        if(IsFileUriWithWindowsDrive(uri))
+            return uri.Substring(8);
         if(uri.StartsWith("file:///"))
             return uri.Substring(7);
         return null;
+    }
+
+    private static bool IsFileUriWithWindowsDrive(string uri)
+    {
+        Regex regex = new(@"^file:///([a-zA-Z]:)\/");
+        Match match = regex.Match(uri);
+        return match.Success;
+    }
+
+    private static bool IsWindowsDrivePath(string path)
+    {
+        Regex regex = new(@"^([a-zA-Z]:)[\/\\]");
+        Match match = regex.Match(path);
+        return match.Success;
     }
 }
