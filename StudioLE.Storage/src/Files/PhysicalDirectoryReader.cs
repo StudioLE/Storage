@@ -40,7 +40,9 @@ public class PhysicalDirectoryReader : IDirectoryReader
         string? absolutePath = GetAbsolutePath(path);
         if (absolutePath == null)
             return null;
-        return Directory.EnumerateDirectories(absolutePath);
+        return Directory
+            .EnumerateDirectories(absolutePath)
+            .Select(Path.GetFileName);
     }
 
     private IEnumerable<string>? GetFileNamesSync(string path)
@@ -48,7 +50,9 @@ public class PhysicalDirectoryReader : IDirectoryReader
         string? absolutePath = GetAbsolutePath(path);
         if (absolutePath == null)
             return null;
-        return Directory.EnumerateFiles(absolutePath);
+        return Directory
+            .EnumerateFiles(absolutePath)
+            .Select(Path.GetFileName);
     }
 
     private string? GetAbsolutePath(string path)
