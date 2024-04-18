@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using StudioLE.Extensions.Logging.Cache;
 using StudioLE.Extensions.System;
+using StudioLE.Storage.Media;
 using StudioLE.Storage.Paths;
 
 namespace StudioLE.Storage.Extensions.Azure.Tests;
@@ -22,7 +23,8 @@ internal sealed class AzureBlobFileWriterTests
             ConnectionString = "UseDevelopmentStorage=true",
             Container = "assets"
         });
-        AzureBlobFileWriter fileWriter = new(logger, options);
+        IMediaTypeProvider mediaTypeProvider = MediaTypeProvider.CreateDefault();
+        AzureBlobFileWriter fileWriter = new(logger, options, mediaTypeProvider);
         MemoryStream stream = new();
         StreamWriter writer = new(stream);
         await writer.WriteAsync("Hello, world.");

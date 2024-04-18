@@ -12,10 +12,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
-    <PackageReference Include="StudioLE.Extensions.System" Version="0.11.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Storage.Abstractions\src\StudioLE.Storage.Abstractions.csproj" />
+    <ProjectReference Include="..\..\StudioLE.Storage\src\StudioLE.Storage.csproj" />
   </ItemGroup>
 </Project>

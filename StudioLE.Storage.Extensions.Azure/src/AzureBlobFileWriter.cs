@@ -3,8 +3,9 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using StudioLE.Extensions.System.IO;
 using StudioLE.Storage.Files;
+using StudioLE.Storage.Media;
+using StudioLE.Storage.Paths;
 
 namespace StudioLE.Storage.Extensions.Azure;
 
@@ -25,17 +26,21 @@ public class AzureBlobFileWriter : IFileWriter
         }
     };
     private readonly ILogger<AzureBlobFileWriter> _logger;
-    private readonly IOptions<AzureBlobFileWriterOptions> _options;
+    private readonly IMediaTypeProvider _mediaTypeProvider;
     private readonly BlobContainerClient _container;
 
     /// <summary>
     /// DI constructor for <see cref="AzureBlobFileWriter"/>.
     /// </summary>
-    public AzureBlobFileWriter(ILogger<AzureBlobFileWriter> logger, IOptions<AzureBlobFileWriterOptions> options)
+    public AzureBlobFileWriter(
+        ILogger<AzureBlobFileWriter> logger,
+        IOptions<AzureBlobFileWriterOptions> options,
+        IMediaTypeProvider mediaTypeProvider)
     {
         _logger = logger;
-        _options = options;
-        _container = new(_options.Value.ConnectionString, _options.Value.Container, _clientOptions);
+        _mediaTypeProvider = mediaTypeProvider;
+        IOptions<AzureBlobFileWriterOptions> options1 = options;
+        _container = new(options1.Value.ConnectionString, options1.Value.Container, _clientOptions);
     }
 
     /// <inheritdoc/>
@@ -43,10 +48,15 @@ public class AzureBlobFileWriter : IFileWriter
     {
         try
         {
+            string? fileExtension = UriHelpers.GetFileExtension(path);
+            string? contentType = null;
+            if(fileExtension is not null)
+                contentType = _mediaTypeProvider.ByFileExtension(fileExtension)?.Type;
+            contentType ??= "application/octet-stream";
             BlobClient blob = _container.GetBlobClient(path);
             BlobHttpHeaders headers = new()
             {
-                ContentType = path.GetContentTypeByExtension() ?? "application/octet-stream"
+                ContentType = contentType
             };
             await blob.UploadAsync(stream, headers);
             stream.Close();
