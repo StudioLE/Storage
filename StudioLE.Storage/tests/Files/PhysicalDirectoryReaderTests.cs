@@ -11,7 +11,7 @@ namespace StudioLE.Storage.Tests.Files;
 internal sealed class PhysicalDirectoryReaderTests
 {
     private CacheLoggerProvider _cache;
-    private PhysicalDirectoryReader _fileReader;
+    private PhysicalDirectoryReader _reader;
 
     [SetUp]
     public void Setup()
@@ -24,15 +24,67 @@ internal sealed class PhysicalDirectoryReaderTests
         {
             RootDirectory = directory
         };
-        _fileReader = new(logger, Options.Create(options));
+        _reader = new(logger, Options.Create(options));
     }
 
     [Test]
-    public async Task PhysicalDirectoryReader_Read()
+    public async Task PhysicalDirectoryReader_GetDirectoryNames()
     {
         // Arrange
         // Act
-        IEnumerable<string>? result = await _fileReader.Read(string.Empty);
+        IEnumerable<string>? result = await _reader.GetDirectoryNames(string.Empty);
+        string[]? files = result?.ToArray();
+
+        // Preview
+        if (_cache.Logs.Count != 0)
+            Console.WriteLine(_cache.Logs.Select(x => x.Message).Join());
+
+        // Assert
+        Assert.That(files, Is.Not.Null);
+        Assert.That(files!.Length, Is.EqualTo(ExampleHelpers.DirectorySubDirectoryCount));
+        Assert.That(_cache.Logs.Count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public async Task PhysicalDirectoryReader_GetDirectoryNames_NotExist()
+    {
+        // Arrange
+        // Act
+        IEnumerable<string>? result = await _reader.GetDirectoryNames("DoesNotExist");
+        string[]? files = result?.ToArray();
+
+        // Preview
+        if (_cache.Logs.Count != 0)
+            Console.WriteLine(_cache.Logs.Select(x => x.Message).Join());
+
+        // Assert
+        Assert.That(files, Is.Null);
+        Assert.That(_cache.Logs.Count, Is.EqualTo(1));
+    }
+
+    [Test]
+    public async Task PhysicalDirectoryReader_GetDirectoryNames_File()
+    {
+        // Arrange
+        // Act
+        IEnumerable<string>? result = await _reader.GetFileNames(ExampleHelpers.FileName);
+        string[]? files = result?.ToArray();
+
+        // Preview
+        if (_cache.Logs.Count != 0)
+            Console.WriteLine(_cache.Logs.Select(x => x.Message).Join());
+
+        // Assert
+        Assert.That(files, Is.Null);
+        Assert.That(_cache.Logs.Count, Is.EqualTo(1));
+    }
+
+    [Test]
+    public async Task PhysicalDirectoryReader_GetFileNames()
+    {
+        // Arrange
+        // Act
+        IEnumerable<string>? result = await _reader.GetFileNames(string.Empty);
         string[]? files = result?.ToArray();
 
         // Preview
@@ -46,11 +98,11 @@ internal sealed class PhysicalDirectoryReaderTests
     }
 
     [Test]
-    public async Task PhysicalDirectoryReader_Read_NotExist()
+    public async Task PhysicalDirectoryReader_GetFileNames_NotExist()
     {
         // Arrange
         // Act
-        IEnumerable<string>? result = await _fileReader.Read("DoesNotExist");
+        IEnumerable<string>? result = await _reader.GetFileNames("DoesNotExist");
         string[]? files = result?.ToArray();
 
         // Preview
@@ -63,11 +115,11 @@ internal sealed class PhysicalDirectoryReaderTests
     }
 
     [Test]
-    public async Task PhysicalDirectoryReader_Read_File()
+    public async Task PhysicalDirectoryReader_GetFileNames_File()
     {
         // Arrange
         // Act
-        IEnumerable<string>? result = await _fileReader.Read(ExampleHelpers.FileName);
+        IEnumerable<string>? result = await _reader.GetFileNames(ExampleHelpers.FileName);
         string[]? files = result?.ToArray();
 
         // Preview

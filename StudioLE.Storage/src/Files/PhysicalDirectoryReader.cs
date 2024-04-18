@@ -20,14 +20,38 @@ public class PhysicalDirectoryReader : IDirectoryReader
         _logger = logger;
         _options = options.Value;
     }
+
     /// <inheritdoc />
-    public Task<IEnumerable<string>?> Read(string path)
+    public Task<IEnumerable<string>?> GetDirectoryNames(string path)
     {
-        IEnumerable<string>? files = ReadSync(path);
+        IEnumerable<string>? directories = GetDirectoryNamesSync(path);
+        return Task.FromResult(directories);
+    }
+
+    /// <inheritdoc />
+    public Task<IEnumerable<string>?> GetFileNames(string path)
+    {
+        IEnumerable<string>? files = GetFileNamesSync(path);
         return Task.FromResult(files);
     }
 
-    private IEnumerable<string>? ReadSync(string path)
+    private IEnumerable<string>? GetDirectoryNamesSync(string path)
+    {
+        string? absolutePath = GetAbsolutePath(path);
+        if (absolutePath == null)
+            return null;
+        return Directory.EnumerateDirectories(absolutePath);
+    }
+
+    private IEnumerable<string>? GetFileNamesSync(string path)
+    {
+        string? absolutePath = GetAbsolutePath(path);
+        if (absolutePath == null)
+            return null;
+        return Directory.EnumerateFiles(absolutePath);
+    }
+
+    private string? GetAbsolutePath(string path)
     {
         if (!Directory.Exists(_options.RootDirectory))
         {
@@ -46,6 +70,6 @@ public class PhysicalDirectoryReader : IDirectoryReader
             _logger.Log(_options.LogLevel, "Failed to read directory. The directory does not exist.");
             return null;
         }
-        return Directory.EnumerateFiles(absolutePath);
+        return absolutePath;
     }
 }
