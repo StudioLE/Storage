@@ -40,4 +40,39 @@ internal sealed class PhysicalFileWriterTests
         Assert.That(FileUriHelpers.IsFileUri(uri!), "Uri is file");
         Assert.That(FileUriHelpers.Exists(uri!), "File exists");
     }
+
+    [Test]
+    public async Task PhysicalFileWriter_Write_WithSubDirectory()
+    {
+        // Arrange
+        CacheLoggerProvider cache = new();
+        LoggerFactory loggerFactory = new(new[] { cache });
+        ILogger<PhysicalFileWriter> logger = loggerFactory.CreateLogger<PhysicalFileWriter>();
+        PhysicalFileSystemOptions systemOptions = new()
+        {
+            RootDirectory = Path.GetTempPath()
+        };
+        PhysicalFileWriterOptions writerOptions = new()
+        {
+            AllowSubDirectories = true,
+            AllowSubDirectoryCreation = true
+        };
+        PhysicalFileWriter fileWriter = new(logger, Options.Create(systemOptions), Options.Create(writerOptions));
+        MemoryStream stream = new();
+        StreamWriter writer = new(stream);
+        await writer.WriteAsync("Hello, world.");
+        await writer.FlushAsync();
+        stream.Seek(0, SeekOrigin.Begin);
+        string path = Guid.NewGuid() + "/" + Guid.NewGuid() + "/" + Guid.NewGuid() + ".txt";
+
+        // Act
+        string? uri = await fileWriter.Write(path, stream);
+        if (cache.Logs.Count != 0)
+            Console.WriteLine(cache.Logs.Select(x => x.Message).Join());
+
+        // Assert
+        Assert.That(uri, Is.Not.Null);
+        Assert.That(FileUriHelpers.IsFileUri(uri!), "Uri is file");
+        Assert.That(FileUriHelpers.Exists(uri!), "File exists");
+    }
 }

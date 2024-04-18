@@ -52,8 +52,16 @@ public class PhysicalFileWriter : IFileWriter
             _logger.Log(_options.LogLevel, "Failed to write file. The file already exists.");
             return null;
         }
+        string? directoryPath = Path.GetDirectoryName(absolutePath);
+        if (!_options.AllowSubDirectoryCreation && directoryPath is not null && !Directory.Exists(directoryPath))
+        {
+            _logger.Log(_options.LogLevel, "Failed to write file. The sub directory does not exist.");
+            return null;
+        }
         try
         {
+            if (_options.AllowSubDirectoryCreation && directoryPath is not null && !Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
             using FileStream fileStream = new(absolutePath, FileMode.Create, FileAccess.Write);
             await stream.CopyToAsync(fileStream);
             stream.Close();
