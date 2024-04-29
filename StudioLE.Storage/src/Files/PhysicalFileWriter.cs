@@ -28,51 +28,40 @@ public class PhysicalFileWriter : IFileWriter
     }
 
     /// <inheritdoc/>
-    public async Task<string?> Write(string path, Stream stream)
+    public Task<Stream?> Open(string path, out string uri)
     {
+        uri = string.Empty;
         if (!Directory.Exists(_systemOptions.RootDirectory))
-        {
-            _logger.Log(_options.LogLevel, "Failed to write file. The root directory does not exist.");
-            return null;
-        }
+            return Failed(path, "The root directory does not exist.");
         if (!_options.AllowSubDirectories && path != Path.GetFileName(path))
-        {
-            _logger.Log(_options.LogLevel, "Failed to write file. Sub directories are not allowed.");
-            return null;
-        }
+            return Failed(path, "Sub directories are not allowed.");
         string absolutePath = Path.Combine(_systemOptions.RootDirectory, path);
         absolutePath = Path.GetFullPath(absolutePath);
         if (!absolutePath.StartsWith(_systemOptions.RootDirectory))
-        {
-            _logger.Log(_options.LogLevel, "Failed to write file. The path is outside the root directory.");
-            return null;
-        }
+            return Failed(path, "The path is outside the root directory.");
         if (!_options.AllowOverwrite && File.Exists(absolutePath))
-        {
-            _logger.Log(_options.LogLevel, "Failed to write file. The file already exists.");
-            return null;
-        }
+            return Failed(path, "The file already exists.");
         string? directoryPath = Path.GetDirectoryName(absolutePath);
         if (!_options.AllowSubDirectoryCreation && directoryPath is not null && !Directory.Exists(directoryPath))
-        {
-            _logger.Log(_options.LogLevel, "Failed to write file. The sub directory does not exist.");
-            return null;
-        }
+            return Failed(path, "The sub directory does not exist.");
+        uri = FileUriHelpers.FromAbsolutePath(absolutePath);
         try
         {
             if (_options.AllowSubDirectoryCreation && directoryPath is not null && !Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
-            using FileStream fileStream = new(absolutePath, FileMode.Create, FileAccess.Write);
-            await stream.CopyToAsync(fileStream);
-            stream.Close();
-            stream.Dispose();
+            FileStream fileStream = new(absolutePath, FileMode.Create, FileAccess.Write);
+            return Task.FromResult<Stream?>(fileStream);
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Failed to write file.");
-            return null;
+            _logger.LogError(e, $"Failed to write file: {path}. {e.GetType()} {e.Message}");
+            return Task.FromResult<Stream?>(null);
         }
-        string uri = FileUriHelpers.FromAbsolutePath(absolutePath);
-        return uri;
+    }
+
+    private Task<Stream?> Failed(string message, string path)
+    {
+        _logger.Log(_options.LogLevel, $"Failed to write file: {path}. {message}");
+        return Task.FromResult<Stream?>(null);
     }
 }

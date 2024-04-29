@@ -14,6 +14,7 @@ namespace StudioLE.Storage.Extensions.Azure;
 /// </summary>
 public class AzureBlobFileWriter : IFileWriter
 {
+    private const bool AllowOverwrite = false;
     private static readonly BlobClientOptions _clientOptions = new()
     {
         Retry =
@@ -39,12 +40,11 @@ public class AzureBlobFileWriter : IFileWriter
     {
         _logger = logger;
         _mediaTypeProvider = mediaTypeProvider;
-        IOptions<AzureBlobFileWriterOptions> options1 = options;
-        _container = new(options1.Value.ConnectionString, options1.Value.Container, _clientOptions);
+        _container = new(options.Value.ConnectionString, options.Value.Container, _clientOptions);
     }
 
     /// <inheritdoc/>
-    public async Task<string?> Write(string path, Stream stream)
+    public Task<Stream?> Open(string path, out string uri)
     {
         try
         {
@@ -58,15 +58,18 @@ public class AzureBlobFileWriter : IFileWriter
             {
                 ContentType = contentType
             };
-            await blob.UploadAsync(stream, headers);
-            stream.Close();
-            stream.Dispose();
-            return blob.Uri.AbsoluteUri;
+            BlobOpenWriteOptions options = new()
+            {
+                HttpHeaders = headers
+            };
+            uri = blob.Uri.AbsoluteUri;
+            return blob.OpenWriteAsync(AllowOverwrite, options);
         }
         catch (Exception e)
         {
             _logger.LogError(e, "Failed to write to blob storage.");
-            return null;
+            uri = string.Empty;
+            return Task.FromResult<Stream?>(null);
         }
     }
 }

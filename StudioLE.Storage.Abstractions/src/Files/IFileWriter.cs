@@ -13,13 +13,12 @@ namespace StudioLE.Storage.Files;
 public interface IFileWriter
 {
     /// <summary>
-    /// Write the stream content to the storage system.
+    /// Open a stream to write to the storage system.
     /// </summary>
     /// <param name="path">The path including filename and extension.</param>
-    /// <param name="stream">The stream to write. The implementation will take care of disposal.</param>
+    /// <param name="uri">The Uniform Resource Locator (URL) of the file written to the storage system.</param>
     /// <returns>
-    /// The Uniform Resource Locator (URL) of the file written to the storage system,
-    /// or <see langword="null"/> if the file could not be written.
+    /// The open and writeable stream, or <see langword="null"/> if the stream can't be opened.
     /// </returns>
-    Task<string?> Write(string path, Stream stream);
+    Task<Stream?> Open(string path, out string uri);
 }
