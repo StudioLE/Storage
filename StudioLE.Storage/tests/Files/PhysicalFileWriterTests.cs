@@ -14,6 +14,7 @@ internal sealed class PhysicalFileWriterTests
     public async Task PhysicalFileWriter_Write()
     {
         // Arrange
+        const string text = "Hello, world.";
         CacheLoggerProvider cache = new();
         LoggerFactory loggerFactory = new(new[] { cache });
         ILogger<PhysicalFileWriter> logger = loggerFactory.CreateLogger<PhysicalFileWriter>();
@@ -25,7 +26,7 @@ internal sealed class PhysicalFileWriterTests
         PhysicalFileWriter fileWriter = new(logger, Options.Create(systemOptions), Options.Create(writerOptions));
         MemoryStream stream = new();
         StreamWriter writer = new(stream);
-        await writer.WriteAsync("Hello, world.");
+        await writer.WriteAsync(text);
         await writer.FlushAsync();
         stream.Seek(0, SeekOrigin.Begin);
         string fileName = Guid.NewGuid() + ".txt";
@@ -39,12 +40,16 @@ internal sealed class PhysicalFileWriterTests
         Assert.That(uri, Is.Not.Null);
         Assert.That(FileUriHelpers.IsFileUri(uri!), "Uri is file");
         Assert.That(FileUriHelpers.Exists(uri!), "File exists");
+        string? filePath = FileUriHelpers.GetPath(uri!);
+        string fileContent = await File.ReadAllTextAsync(filePath!);
+        Assert.That(fileContent, Is.EqualTo(text));
     }
 
     [Test]
     public async Task PhysicalFileWriter_Write_WithSubDirectory()
     {
         // Arrange
+        const string text = "Hello, world.";
         CacheLoggerProvider cache = new();
         LoggerFactory loggerFactory = new(new[] { cache });
         ILogger<PhysicalFileWriter> logger = loggerFactory.CreateLogger<PhysicalFileWriter>();
@@ -60,7 +65,7 @@ internal sealed class PhysicalFileWriterTests
         PhysicalFileWriter fileWriter = new(logger, Options.Create(systemOptions), Options.Create(writerOptions));
         MemoryStream stream = new();
         StreamWriter writer = new(stream);
-        await writer.WriteAsync("Hello, world.");
+        await writer.WriteAsync(text);
         await writer.FlushAsync();
         stream.Seek(0, SeekOrigin.Begin);
         string path = Guid.NewGuid() + "/" + Guid.NewGuid() + "/" + Guid.NewGuid() + ".txt";
@@ -74,5 +79,8 @@ internal sealed class PhysicalFileWriterTests
         Assert.That(uri, Is.Not.Null);
         Assert.That(FileUriHelpers.IsFileUri(uri!), "Uri is file");
         Assert.That(FileUriHelpers.Exists(uri!), "File exists");
+        string? filePath = FileUriHelpers.GetPath(uri!);
+        string fileContent = await File.ReadAllTextAsync(filePath!);
+        Assert.That(fileContent, Is.EqualTo(text));
     }
 }
