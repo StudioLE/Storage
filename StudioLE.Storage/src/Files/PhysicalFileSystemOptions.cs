@@ -15,5 +15,5 @@ public class PhysicalFileSystemOptions
     /// <summary>
     /// The log level to use when logging errors.
     /// </summary>
-    public LogLevel LogLevel { get; set; } = LogLevel.Error;
+    public LogLevel LogLevel { get; set; } = LogLevel.Debug;
 }
