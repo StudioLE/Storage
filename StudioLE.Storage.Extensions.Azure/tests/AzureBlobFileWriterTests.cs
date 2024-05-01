@@ -11,7 +11,7 @@ internal sealed class AzureBlobFileWriterTests
 {
     [Test]
     [Explicit("Requires Azurite")]
-    public async Task AzureBlobFileWriter_Write()
+    public async Task AzureBlobFileWriter_OpenWrite()
     {
         // Arrange
         const string text = "Hello, world.";
@@ -29,7 +29,7 @@ internal sealed class AzureBlobFileWriterTests
         string? uri;
 
         // Act
-        await using (Stream? stream = await fileWriter.Open(fileName, out uri))
+        await using (Stream? stream = await fileWriter.OpenWrite(fileName, out uri))
         {
             if (stream is null)
                 throw new("Stream is null");

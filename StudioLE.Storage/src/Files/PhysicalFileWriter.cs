@@ -28,7 +28,7 @@ public class PhysicalFileWriter : IFileWriter
     }
 
     /// <inheritdoc/>
-    public Task<Stream?> Open(string path, out string uri)
+    public Task<Stream?> OpenWrite(string path, out string uri)
     {
         uri = string.Empty;
         if (!Directory.Exists(_systemOptions.RootDirectory))

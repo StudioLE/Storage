@@ -11,7 +11,7 @@ namespace StudioLE.Storage.Tests.Files;
 internal sealed class PhysicalFileWriterTests
 {
     [Test]
-    public async Task PhysicalFileWriter_Open()
+    public async Task PhysicalFileWriter_OpenWrite()
     {
         // Arrange
         const string text = "Hello, world.";
@@ -28,7 +28,7 @@ internal sealed class PhysicalFileWriterTests
         string? uri;
 
         // Act
-        await using (Stream? stream = await fileWriter.Open(fileName, out uri))
+        await using (Stream? stream = await fileWriter.OpenWrite(fileName, out uri))
         {
             if (stream is null)
                 throw new("Stream is null");
@@ -50,7 +50,7 @@ internal sealed class PhysicalFileWriterTests
     }
 
     [Test]
-    public async Task PhysicalFileWriter_Write_WithSubDirectory()
+    public async Task PhysicalFileWriter_OpenWrite_WithSubDirectory()
     {
         // Arrange
         const string text = "Hello, world.";
@@ -71,7 +71,7 @@ internal sealed class PhysicalFileWriterTests
         string? uri;
 
         // Act
-        await using (Stream? stream = await fileWriter.Open(path, out uri))
+        await using (Stream? stream = await fileWriter.OpenWrite(path, out uri))
         {
             if (stream is null)
                 throw new("Stream is null");

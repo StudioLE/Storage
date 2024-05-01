@@ -20,5 +20,5 @@ public interface IFileWriter
     /// <returns>
     /// The open and writeable stream, or <see langword="null"/> if the stream can't be opened.
     /// </returns>
-    Task<Stream?> Open(string path, out string uri);
+    Task<Stream?> OpenWrite(string path, out string uri);
 }

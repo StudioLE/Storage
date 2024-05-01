@@ -44,7 +44,7 @@ public class AzureBlobFileWriter : IFileWriter
     }
 
     /// <inheritdoc/>
-    public Task<Stream?> Open(string path, out string uri)
+    public Task<Stream?> OpenWrite(string path, out string uri)
     {
         try
         {
