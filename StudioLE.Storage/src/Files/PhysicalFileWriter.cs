@@ -32,18 +32,18 @@ public class PhysicalFileWriter : IFileWriter
     {
         uri = string.Empty;
         if (!Directory.Exists(_systemOptions.RootDirectory))
-            return Failed(path, "The root directory does not exist.");
+            return Failed(path, "The root directory does not exist");
         if (!_options.AllowSubDirectories && path != Path.GetFileName(path))
-            return Failed(path, "Sub directories are not allowed.");
+            return Failed(path, "Sub directories are not allowed");
         string absolutePath = Path.Combine(_systemOptions.RootDirectory, path);
         absolutePath = Path.GetFullPath(absolutePath);
         if (!absolutePath.StartsWith(_systemOptions.RootDirectory))
-            return Failed(path, "The path is outside the root directory.");
+            return Failed(path, "The path is outside the root directory");
         if (!_options.AllowOverwrite && File.Exists(absolutePath))
-            return Failed(path, "The file already exists.");
+            return Failed(path, "The file already exists");
         string? directoryPath = Path.GetDirectoryName(absolutePath);
         if (!_options.AllowSubDirectoryCreation && directoryPath is not null && !Directory.Exists(directoryPath))
-            return Failed(path, "The sub directory does not exist.");
+            return Failed(path, "The sub directory does not exist");
         uri = FileUriHelpers.FromAbsolutePath(absolutePath);
         try
         {
@@ -54,14 +54,17 @@ public class PhysicalFileWriter : IFileWriter
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Failed to write file: {path}. {e.GetType()} {e.Message}");
+            _logger.LogError(e, "Failed to write file {Path}. {Type} {Message}", path, e.GetType(), e.Message);
             return Task.FromResult<Stream?>(null);
         }
     }
 
-    private Task<Stream?> Failed(string message, string path)
+    private Task<Stream?> Failed(string path, string message)
     {
-        _logger.Log(_options.LogLevel, $"Failed to write file: {path}. {message}");
+        if(string.IsNullOrEmpty(message))
+            _logger.Log(_options.LogLevel, "Failed to write file {Path}", path);
+        else
+            _logger.Log(_options.LogLevel, "Failed to write file {Path}. {Message}", path, message);
         return Task.FromResult<Stream?>(null);
     }
 }
