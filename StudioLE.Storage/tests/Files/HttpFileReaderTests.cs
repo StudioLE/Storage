@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using StudioLE.Extensions.Logging.Cache;
 using StudioLE.Extensions.System;
@@ -22,11 +23,12 @@ internal sealed class HttpFileReaderTests : IAsyncDisposable
         _cache = new();
         LoggerFactory loggerFactory = new(new[] { _cache });
         ILogger<HttpFileReader> logger = loggerFactory.CreateLogger<HttpFileReader>();
-        HttpClient client = new()
+        IOptions<HttpFileSystemOptions> options = Options.Create(new HttpFileSystemOptions
         {
-            BaseAddress = new(StaticHostBaseAddress)
-        };
-        _fileReader = new(logger, client);
+            BaseAddress = StaticHostBaseAddress
+        });
+        HttpFileSystemClient client = new(options);
+        _fileReader = new(logger, options, client);
     }
 
     [OneTimeSetUp]
@@ -36,7 +38,7 @@ internal sealed class HttpFileReaderTests : IAsyncDisposable
     }
 
     [Test]
-    public async Task PhysicalFileReader_Read()
+    public async Task HttpFileReader_Read()
     {
         // Arrange
         // Act
@@ -57,7 +59,7 @@ internal sealed class HttpFileReaderTests : IAsyncDisposable
 
 
     [Test]
-    public async Task PhysicalFileReader_Read_NotExist()
+    public async Task HttpFileReader_Read_NotExist()
     {
         // Arrange
         // Act
