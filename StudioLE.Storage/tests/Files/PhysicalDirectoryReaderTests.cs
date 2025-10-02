@@ -10,8 +10,8 @@ namespace StudioLE.Storage.Tests.Files;
 
 internal sealed class PhysicalDirectoryReaderTests
 {
-    private CacheLoggerProvider _cache;
-    private PhysicalDirectoryReader _reader;
+    private CacheLoggerProvider _cache = null!;
+    private PhysicalDirectoryReader _reader = null!;
 
     [SetUp]
     public void Setup()

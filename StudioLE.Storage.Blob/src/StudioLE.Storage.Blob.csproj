@@ -8,8 +8,8 @@
   <Import Project="../../Global.props"/>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
-    <PackageReference Include="studiole.extensions.system" Version="0.11.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.25.1" />
+    <PackageReference Include="StudioLE.Extensions.System" Version="0.11.0" />
   </ItemGroup>
 
   <ItemGroup>
