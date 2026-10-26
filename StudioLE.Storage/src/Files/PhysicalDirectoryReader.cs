@@ -42,7 +42,7 @@ public class PhysicalDirectoryReader : IDirectoryReader
             return null;
         return Directory
             .EnumerateDirectories(absolutePath)
-            .Select(Path.GetFileName);
+            .Select(x => Path.GetFileName(x));
     }
 
     private IEnumerable<string>? GetFileNamesSync(string path)
@@ -52,7 +52,7 @@ public class PhysicalDirectoryReader : IDirectoryReader
             return null;
         return Directory
             .EnumerateFiles(absolutePath)
-            .Select(Path.GetFileName);
+            .Select(x => Path.GetFileName(x));
     }
 
     private string? GetAbsolutePath(string path)

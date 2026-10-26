@@ -34,7 +34,7 @@ public class HttpFileReader : IFileReader
         return Failed(path, response.ReasonPhrase);
     }
 
-    private Stream? Failed(string path, string message)
+    private Stream? Failed(string path, string? message)
     {
         if(string.IsNullOrEmpty(message))
             _logger.Log(_options.LogLevel, "Failed to read file {Path}", path);
